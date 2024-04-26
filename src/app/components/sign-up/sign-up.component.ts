@@ -1,0 +1,114 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { signUpDTO } from '../../dto/signUpDTO';
+import { ImageService } from '../../services/user/image.service';
+import { SignUpService } from '../../services/user/sign-up.service';
+import { error } from 'console';
+@Component({
+  selector: 'app-sign-up',
+  standalone: true,
+  imports: [FormsModule, RouterModule],
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.css'
+})
+export class SignUpComponent {
+  // visualisar los warnings
+  warningName = true;
+  warningNickName = true;
+  warningMail = true;
+  warningPassword = true;
+  warningCity = true;
+  // validaciones en los campos de los inputs
+  validateName:String="form-control";
+  validateNickName:String="form-control";
+  validateMail:String="form-control";
+  validatePassword:String="form-control";
+  validateCity:String="form-select";
+
+  ValidateN(event:any){
+    this.validateName="form-control";
+    this.warningName = true;
+  }
+  ValidateNN(event:any){
+    this.validateNickName="form-control";
+    this.warningNickName=true;
+  }
+  ValidateM(event:any){
+    this.validateMail="form-control";
+    this.warningMail = true;
+  }
+  ValidateP(event:any){
+    this.validatePassword="form-control";
+    this.warningPassword=true;
+  }
+  ValidateC(event:any){
+    this.validateCity="form-select";
+    this.warningCity=true;
+  }
+  cloudinary?:any;
+  image:string='https://res.cloudinary.com/dybshhtw1/image/upload/v1714166700/unilocal/perfil_tcaium.gif';
+  account:signUpDTO;
+  constructor(private imageS:ImageService, private signUp:SignUpService){
+    this.account = new signUpDTO();
+  }
+  SingUp(event:any){
+      if(this.account.name == ""){
+        this.validateName = this.validateName+" is-invalid"
+        this.warningName = false;
+      }
+      if(this.account.nickname == ""){
+        this.validateNickName = this.validateNickName+" is-invalid"
+        this.warningNickName = false;
+      }
+      if(this.account.email == ""){
+        this.validateMail = this.validateMail+" is-invalid"
+        this.warningMail = false;
+      }
+      if(this.account.password == ""){
+        this.validatePassword = this.validatePassword+" is-invalid"
+        this.warningPassword = false;
+      }
+      if(this.account.city == "") {
+        this.validateCity = this.validateCity+" is-invalid";
+        this.warningCity = false;
+      }
+      if(this.account.name != ""&&this.account.nickname != ""&&this.account.email != ""&&this.account.password != ""&&this.account.city != ""&&this.account.photo!=""){
+        console.log(this.account.photo);
+        this.signUp.singUp(this.account).subscribe({
+          next:(data)=>{
+            alert(data.respuesta);
+          },
+          error:(error)=>{
+            alert(error.respuesta);
+          }
+        });
+      }
+  }
+  // agregar una imagen
+  imagePerfil(event: any) {
+    const file: File = event.target.files[0];
+    if (!file) {
+      console.error('No file selected');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('file', file);
+    this.imageS.saveImageCloudinary(formData).subscribe({
+      next:(data)=>{
+          this.cloudinary=data.respuesta;
+          console.log(this.cloudinary);
+          if (this.cloudinary.hasOwnProperty('secure_url')) {
+            this.image = this.cloudinary['secure_url'];
+            this.account.photo = this.image;
+            console.log(this.image)
+          } 
+      },
+      error:(error)=>{
+        alert(error.respuesta);
+      }
+    });
+
+    
+  }
+}
