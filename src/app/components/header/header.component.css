@@ -1,0 +1,11 @@
+.text{
+    display: flex; /* Alinea los elementos verticalmente */
+    justify-content: flex-end; /* Coloca los elementos al final del contenedor */
+    align-items: center;
+}
+.search{
+    display: flex;
+}
+.filter{
+    width: 30%;
+}

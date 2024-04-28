@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { loginDTO } from '../../dto/loginDTO';
 import { LoginService } from '../../services/user/login.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
 
 
 
@@ -19,7 +21,7 @@ export class LoginComponent {
   invalidmail:string="form-control";
   invalidpass:string="form-control";
   Login:loginDTO;
-  constructor(private loginService:LoginService){
+  constructor(private loginService:LoginService, private routes:Router){
     this.Login = new loginDTO();
   }
   errorMessage:string='';
@@ -43,14 +45,13 @@ export class LoginComponent {
         next: (data) => {
           console.log(data.respuesta);
           alert('Su login es correcto');
+          this.routes.navigate(['/home']);
         }, 
         error: (err) => {
           alert('El error es: '+err.error.respuesta);
         }
 
-      });
-      console.log(this.token)
-    
+      });  
     }
     
   }

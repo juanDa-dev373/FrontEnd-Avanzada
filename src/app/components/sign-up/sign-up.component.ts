@@ -27,6 +27,7 @@ export class SignUpComponent {
   validateCity:String="form-select";
 
   ValidateN(event:any){
+    console.log("t")
     this.validateName="form-control";
     this.warningName = true;
   }
