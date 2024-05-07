@@ -5,9 +5,9 @@
             <input type="search" class=" form-control" placeholder="Search..." aria-label="Search">
             <select name="" id="" class="form-select filter">
               <option value="" selected disabled>Filter</option>
-              <option value="">Type</option>
-              <option value="">Location</option>
-              <option value="">Name</option>
+              <option value="type">Type</option>
+              <option value="location">Location</option>
+              <option value="name">Name</option>
             </select>
           </form>
           
@@ -16,17 +16,17 @@
             <div class="text">
                 
                 <form class="" role="search">
-                    <input type="search" class="form-control" placeholder="name" aria-label="Search" disabled>
+                    <input type="search" class="name" [placeholder]="client.nickname" aria-label="Search" disabled>
                 </form>
                 
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714166700/unilocal/perfil_tcaium.gif" alt="mdo" width="50" height="50" class="rounded-circle">
+                  <img [src]="client.profilePhoto" alt="mdo" width="50" height="50" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small shadow">
                   <li><a class="dropdown-item" routerLink="/home/setting-account">Account Settings</a></li>
-                  <li><a class="dropdown-item" href="#">My Perfil</a></li>
+                  <li><a class="dropdown-item" (click)="openSnackBar()">My Perfil</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                  <li><a class="dropdown-item" (click)="openModal()">Sign out</a></li>
                 </ul>
               </div>
         </div>

@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { loginDTO } from '../../dto/loginDTO';
-import { LoginService } from '../../services/user/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
-
-
+import { TokenServicesService } from '../../services/ExtServices/token-services.service';
+import { AuthService } from '../../services/user/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +19,7 @@ export class LoginComponent {
   invalidmail:string="form-control";
   invalidpass:string="form-control";
   Login:loginDTO;
-  constructor(private loginService:LoginService, private routes:Router){
+  constructor(private loginService:AuthService, private routes:Router, private local:TokenServicesService){
     this.Login = new loginDTO();
   }
   errorMessage:string='';
@@ -41,14 +39,15 @@ export class LoginComponent {
       this.invalidpass=this.invalidpass+" is-invalid";
     }
     if(this.Login.password != '' && this.Login.email != '' ){
+      //this.modal.open();
       this.loginService.getToken(this.Login).subscribe({
-        next: (data) => {
+        next: (data:any) => {
           console.log(data.respuesta);
-          alert('Su login es correcto');
-          this.routes.navigate(['/home']);
+          this.local.setToken(data.respuesta);
+          this.routes.navigate(['/home/list-business']);
         }, 
-        error: (err) => {
-          alert('El error es: '+err.error.respuesta);
+        error: (err:any) => {
+          alert('El error es: '+err.respuesta);
         }
 
       });  

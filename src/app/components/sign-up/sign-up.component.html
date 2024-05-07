@@ -2,9 +2,12 @@
     <div class= "form-control" id="container">
         <h1>Sign Up</h1>
         <p>Enter the following fields to register</p>
-        <div class="text-center" class="rounded-circle d-flex justify-content-center">
-            <img [src]="image" onclick="document.getElementById('real-file').click()">
-            <input  (change)= "imagePerfil($event)" type="file" id="real-file" style="display: none;">
+        <div class="text-center" class="rounded-circle d-flex justify-content-center imagen-container">
+            <img [src]="image" onclick="document.getElementById('real-file').click()" [hidden]="isLoading">
+            <input  (change)= "imagePerfil($event)" type="file" id="real-file" style="display: none;" >
+            <div class="spinner-grow" role="status" *ngIf="isLoading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
         <label for="">Name</label>
         <div>

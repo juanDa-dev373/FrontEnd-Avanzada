@@ -1,18 +1,31 @@
 <div class="flex-shrink-0 p-3 bg-white" style="width: 280px; min-height: 575px;">
   <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-    <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714243776/unilocal/assets/opciones_fnz5du.gif" alt="" width="30px" height="30px">
+    <img class="my-rotate" src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714243776/unilocal/assets/opciones_fnz5du.gif" alt="" width="30px" height="30px">
     <span class="fs-5 fw-semibold">Settings</span>
   </a>
   <ul class="list-unstyled ps-0">
     <li class="mb-1">
       <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714235755/unilocal/assets/hogar_ijny9r.gif" alt="" width="30px" height="30px">Home
+        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714235755/unilocal/assets/hogar_ijny9r.gif" alt="" width="30px" height="30px"><a routerLink="/home/list-business">Home</a>
       </button>
     </li>
     <li class="mb-1">
       <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
         <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714236314/unilocal/assets/camino_l1iups.gif" alt="" width="30px" height="30px"><a routerLink="/home/map">Map</a>
       </button>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#business-collapse" aria-expanded="false">
+        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1715111390/tienda_trfogs.gif" alt="" width="30px" height="30px">My Business
+      </button>
+      <div class="collapse" id="business-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
+          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Weekly</a></li>
+          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Monthly</a></li>
+          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li>
+        </ul>
+      </div>
     </li>
     <li class="mb-1">
       <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
@@ -63,20 +76,6 @@
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Processed</a></li>
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Shipped</a></li>
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Returned</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="border-top my-3"></li>
-    <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-        Account
-      </button>
-      <div class="collapse" id="account-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
         </ul>
       </div>
     </li>

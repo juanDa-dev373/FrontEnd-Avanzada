@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { business } from '../../model/business';
+import { ClientService } from '../../services/user/client.service';
+import { TokenServicesService } from '../../services/ExtServices/token-services.service';
 
 
 @Component({
@@ -9,6 +12,22 @@ import { RouterModule } from '@angular/router';
   templateUrl: './slide-bar.component.html',
   styleUrl: './slide-bar.component.css'
 })
-export class SlideBarComponent {
+export class SlideBarComponent implements OnInit{
+  business:business[]=[];
+  constructor(private clientService:ClientService, private local:TokenServicesService){}
+  ngOnInit(): void {
+      if(this.local.getToken()!==null){
+        this.clientService.getAllBusiness().subscribe({
+          next:(data)=>{
+            this.business = data;
+          },
+          error:(error1)=>{
+            console.log(error1);
+          }
+        });
+      }else{
+        console.log("el localStorage es null");
+      }
+    }
 
 }

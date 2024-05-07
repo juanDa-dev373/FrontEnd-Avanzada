@@ -45,3 +45,6 @@ a{
     text-decoration: none;
     color: white;
 }
+.imagen-container.loading img {
+    opacity: 0.5; /* Reduce la opacidad de la imagen mientras se carga */
+}

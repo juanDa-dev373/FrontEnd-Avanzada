@@ -9,3 +9,11 @@
 .filter{
     width: 30%;
 }
+.name{
+    border: none;
+    background-color: white;
+    -webkit-text-fill-color: black;
+    font-family: 'Arial Narrow';
+    font-size: 20px;
+    text-align: center;
+}

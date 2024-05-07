@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ForgotPasswordService } from '../../services/user/forgot-password.service';
 import { FormsModule } from '@angular/forms';
 import { error } from 'console';
+import { AuthService } from '../../services/user/auth.service';
 
 @Component({
   selector: 'app-password-recovery',
@@ -12,7 +12,7 @@ import { error } from 'console';
   styleUrl: './password-recovery.component.css'
 })
 export class PasswordRecoveryComponent {
-    constructor(private forgot:ForgotPasswordService){}
+    constructor(private forgot:AuthService){}
     email:string = '';
     confirm(){
       console.log(this.email)

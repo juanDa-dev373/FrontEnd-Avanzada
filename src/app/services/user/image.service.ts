@@ -8,9 +8,11 @@ import { enviroments } from '../../../enviroments/enviroments';
   providedIn: 'root'
 })
 export class ImageService {
-
   constructor(private http:HttpClient) { }
   saveImageCloudinary(image:FormData):Observable<MensajeDTO>{
     return this.http.post<MensajeDTO>(enviroments.urlApi+"/imagenes/update",image);
+  }
+  public delete(/*ImagenDTO imagenDTO*/):Observable<MensajeDTO>{
+      return this.http.delete<MensajeDTO>('');
   }
 }

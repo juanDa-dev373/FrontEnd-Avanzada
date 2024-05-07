@@ -5,3 +5,12 @@
 .ejemplo{
     height: 500px;
 }
+.cont{
+    display: flex;
+}
+.slide-bar-my{
+    grid-template-columns: 100px 3.5fr;
+}
+.slide-bar-my:hover{
+    grid-template-columns: 200px 3.5fr;
+}

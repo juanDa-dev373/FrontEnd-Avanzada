@@ -1,0 +1,19 @@
+<div class="center"><h2>Business</h2></div>
+<div class="my-container">
+    <!-- Contenido del div duplicado -->
+    <div *ngFor="let index of negocios; let i =index" class="container2">
+        <div class="card" >
+            <app-carousel [id]="carouselIds[i]" [images]="index.images"></app-carousel>
+            <div class="card-body" >
+              <h5 class="card-title">{{index.nombre}}</h5>
+              <p class="card-text">{{index.descripcion}}</p>
+            </div>
+            <div class="card-body">
+              <div class="container-fluid d-grid  " style="grid-template-columns: 2.5fr 1.5fr; grid-column-gap: 20px;" id="button-container">
+                <button class="form-control">Details</button>
+                <img src="/assets/images/casa.png" t="" height="20px" width="20px">
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

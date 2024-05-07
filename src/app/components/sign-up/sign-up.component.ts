@@ -3,12 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { signUpDTO } from '../../dto/signUpDTO';
 import { ImageService } from '../../services/user/image.service';
-import { SignUpService } from '../../services/user/sign-up.service';
 import { error } from 'console';
+import { AuthService } from '../../services/user/auth.service';
+import { NgClass, NgIf } from '@angular/common';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [FormsModule, RouterModule],
+  imports: [FormsModule, RouterModule,NgIf,NgClass],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
@@ -19,6 +20,7 @@ export class SignUpComponent {
   warningMail = true;
   warningPassword = true;
   warningCity = true;
+  isLoading?:boolean;
   // validaciones en los campos de los inputs
   validateName:String="form-control";
   validateNickName:String="form-control";
@@ -50,7 +52,7 @@ export class SignUpComponent {
   cloudinary?:any;
   image:string='https://res.cloudinary.com/dybshhtw1/image/upload/v1714166700/unilocal/perfil_tcaium.gif';
   account:signUpDTO;
-  constructor(private imageS:ImageService, private signUp:SignUpService){
+  constructor(private imageS:ImageService, private auth:AuthService){
     this.account = new signUpDTO();
   }
   SingUp(event:any){
@@ -76,7 +78,7 @@ export class SignUpComponent {
       }
       if(this.account.name != ""&&this.account.nickname != ""&&this.account.email != ""&&this.account.password != ""&&this.account.city != ""&&this.account.photo!=""){
         console.log(this.account.photo);
-        this.signUp.singUp(this.account).subscribe({
+        this.auth.signUpClient(this.account).subscribe({
           next:(data)=>{
             alert(data.respuesta);
           },
@@ -89,6 +91,7 @@ export class SignUpComponent {
   // agregar una imagen
   imagePerfil(event: any) {
     const file: File = event.target.files[0];
+    this.isLoading=true;
     if (!file) {
       console.error('No file selected');
       return;
@@ -104,12 +107,12 @@ export class SignUpComponent {
             this.account.photo = this.image;
             console.log(this.image)
           } 
+          this.isLoading=false;
       },
       error:(error)=>{
         alert(error.respuesta);
+        this.isLoading=false;
       }
     });
-
-    
   }
 }

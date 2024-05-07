@@ -5,6 +5,8 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { HomeComponent } from './components/home/home.component';
 import { AccountSettingComponent } from './components/account-setting/account-setting.component';
 import { MapComponent } from './components/map/map.component';
+import { ListBusinessComponent } from './components/list-business/list-business.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 export const routes: Routes = [
     {
         path:'', component:LoginComponent
@@ -19,7 +21,12 @@ export const routes: Routes = [
             },
             {
                 path:'map', component:MapComponent
+            },{
+                path:'list-business', component:ListBusinessComponent
             }
         ]
+    },
+    {
+        path:'change-password', component:ChangePasswordComponent
     }
 ];
