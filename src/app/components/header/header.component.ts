@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PopupService } from '../../services/ExtServices/popup.service';
 import { ModalService } from '../../services/ExtServices/modal.service';
+import { accountDetailDTO } from '../../dto/accountDetailDTO';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { ModalService } from '../../services/ExtServices/modal.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  @Input() client?:any;
+  @Input() client?:accountDetailDTO;
   constructor(private popup:PopupService, private modal:ModalService){
   }
   openSnackBar() {

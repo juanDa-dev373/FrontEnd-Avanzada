@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
@@ -13,7 +13,12 @@ export class ClientService {
   constructor(private http:HttpClient,private local:TokenServicesService) { }
 
   public getClientById(){
-      return this.http.get<MensajeDTO>('');
+    const token = this.local.getToken();
+    console.log(token);
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+    });
+      return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/', {headers:headers});
   }
 
   public getListBusiness():Observable<MensajeDTO> {
@@ -56,12 +61,12 @@ export class ClientService {
       return this.http.post<MensajeDTO>('','');
   }
   public getAllBusiness(){
-    const token = this.local.getToken;
+    const token = this.local.getToken();
     console.log(token);
     const headers = new HttpHeaders({
-    'Authorization': 'Bearer Token ' + token
-  });
-      return this.http.get<any>('http://localhost:8083/api/clients/getAllBusiness', {headers:headers});
+        'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/getAllBusiness', {headers:headers});
   }
   
   public listBusinessLocation(locationDTO:locationDTO){
@@ -77,7 +82,12 @@ export class ClientService {
   }
   
   public listBusinessOwner():Observable<MensajeDTO>{
-      return this.http.get<MensajeDTO>('');
+    const token = this.local.getToken();
+    console.log(token);
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/listBusinessOwner', {headers:headers});
   }
   
   public getBusiness(idBusiness:string){

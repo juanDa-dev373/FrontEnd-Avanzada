@@ -9,10 +9,8 @@ export class PopupService {
   constructor(private _snackBar: MatSnackBar) {}
 
   openSnackBar(mensaje:string) {
-    const snackBarRef: MatSnackBarRef<SimpleSnackBar> = this._snackBar.open(mensaje,'Cerrar');
-    snackBarRef.onAction().subscribe(() => {
-      // Código a ejecutar cuando se hace clic en el botón "Cerrar"
-      snackBarRef.dismiss();
+    this._snackBar.open(mensaje, 'Cerrar', {
+      duration: 2000, // Duración en milisegundos
     });
   }
 }

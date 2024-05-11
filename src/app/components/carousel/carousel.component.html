@@ -3,6 +3,7 @@
     <div class="carousel-item" *ngFor="let image of images; let i = index" [class.active]="i === 0">
       <img [src]="image" class="d-block w-100" [alt]="'Slide ' + (i + 1)">
     </div>
+    {{id}}
   </div>
   <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#' + id" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

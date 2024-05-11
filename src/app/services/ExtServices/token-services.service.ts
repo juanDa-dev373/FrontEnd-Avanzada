@@ -8,9 +8,10 @@ import { CookieService } from 'ngx-cookie-service';
 export class TokenServicesService {
 
   setToken(token:string){
-    localStorage.setItem("token", token);
+    window.sessionStorage.removeItem("token");
+    window.sessionStorage.setItem("token", token);
   }
   getToken():string|null{
-    return localStorage.getItem("token");
+    return window.sessionStorage.getItem("token");
   }
 }

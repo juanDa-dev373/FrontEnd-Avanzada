@@ -42,12 +42,11 @@ export class LoginComponent {
       //this.modal.open();
       this.loginService.getToken(this.Login).subscribe({
         next: (data:any) => {
-          console.log(data.respuesta);
-          this.local.setToken(data.respuesta);
+          this.local.setToken(data.respuesta.token);
           this.routes.navigate(['/home/list-business']);
         }, 
         error: (err:any) => {
-          alert('El error es: '+err.respuesta);
+          alert('El error es: '+err.error.respuesta);
         }
 
       });  

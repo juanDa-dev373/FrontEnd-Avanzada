@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import { Observable } from 'rxjs';
 import { businessDTO } from '../../dto/businessDTO';
 import { enviroments } from '../../../enviroments/enviroments';
+import { business } from '../../model/business';
 
 
 @Injectable({
@@ -47,11 +48,11 @@ export class MapService {
         });
       });
     }
-    public pintarMarcadores(negocios: businessDTO[]) {
-      negocios.forEach(negocio => {
+    public pintarMarcadores(business: business[]) {
+      business.forEach(business => {
         new mapboxgl.Marker()
-        .setLngLat([negocio.location.longitude, negocio.location.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(negocio.name))
+        .setLngLat([business.location.longitude, business.location.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML(business.name))
         .addTo(this.mapa);
       });
     }
