@@ -17,3 +17,6 @@
     font-size: 20px;
     text-align: center;
 }
+.custom-dialog {
+    border-radius: 10px;
+}

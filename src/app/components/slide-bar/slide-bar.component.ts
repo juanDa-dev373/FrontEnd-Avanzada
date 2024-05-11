@@ -3,7 +3,11 @@ import { RouterModule } from '@angular/router';
 import { business } from '../../model/business';
 import { ClientService } from '../../services/user/client.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
+=======
+import { ModalService } from '../../services/ExtServices/modal.service';
+>>>>>>> origin/Juan-Cortes
 
 
 @Component({
@@ -15,7 +19,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SlideBarComponent implements OnInit{
   business:business[]=[];
-  constructor(private clientService:ClientService, private local:TokenServicesService){}
+  constructor(private clientService:ClientService, private local:TokenServicesService, private modal:ModalService){}
   ngOnInit(): void {
         this.clientService.listBusinessOwner().subscribe({
           next:(data)=>{
@@ -30,5 +34,7 @@ export class SlideBarComponent implements OnInit{
           }
         });
     }
-
+    openCreateList(){
+      this.modal.openCreateList();
+    }
 }

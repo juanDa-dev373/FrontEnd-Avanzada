@@ -14,3 +14,7 @@
 .slide-bar-my:hover{
     grid-template-columns: 200px 3.5fr;
 }
+.modal-createList{
+    border-radius: 18px;
+    background-color: yellow;
+}
