@@ -15,6 +15,7 @@ import { ModalService } from '../../services/ExtServices/modal.service';
 })
 export class SlideBarComponent implements OnInit{
   business:business[]=[];
+  listbusines: any[]=[]
   constructor(private clientService:ClientService, private local:TokenServicesService, private modal:ModalService){}
   ngOnInit(): void {
       if(this.local.getToken()!==null){
@@ -31,6 +32,6 @@ export class SlideBarComponent implements OnInit{
       }
     }
     openCreateList(){
-      this.modal.openCreateList();
+      this.modal.openCreateList(this.listbusines);
     }
 }

@@ -7,9 +7,14 @@ import { AccountSettingComponent } from './components/account-setting/account-se
 import { MapComponent } from './components/map/map.component';
 import { ListBusinessComponent } from './components/list-business/list-business.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AppComponent } from './app.component';
+import { IndexComponent } from './components/index/index.component';
 export const routes: Routes = [
     {
-        path:'', component:LoginComponent
+        path:'', component:IndexComponent
+    },
+    {
+        path:'login', component:LoginComponent
     },{
         path:'signup', component:SignUpComponent
     },{
@@ -29,4 +34,5 @@ export const routes: Routes = [
     {
         path:'change-password', component:ChangePasswordComponent
     }
+
 ];

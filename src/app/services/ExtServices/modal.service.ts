@@ -12,18 +12,18 @@ export class ModalService {
   
   openModalSingOut(){
     this.modal.open(DialogComponent, {
-      data: { title: 'Sing out', content: 'Are you sure you want to close the section?'},
-      panelClass:'modal-dialog"'
+      data: { title: 'Sign out', content: 'Are you sure you want to close the section?'},
+      panelClass:'modal-dialog"',
+      disableClose: true
     });
   }
 
-  openCreateList(){
+  openCreateList(list:any){
     this.modal.open(CreateListComponent, {
-      data: {
-        name: 'Create List',
-        animal: 'Create List'
-      },
+      data: { list: list },
+      disableClose: true
     })
+    
   }
 
 }
