@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { business } from '../../model/business';
 import { ClientService } from '../../services/user/client.service';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ListBusinessComponent implements OnInit{
   negocios:business[]= [];
   carouselIds: string[] = [];
   
-  constructor(private clientService:ClientService) {
+  constructor(private clientService:ClientService, private routes:Router) {
     // Genera identificadores únicos para cada carrusel
     this.carouselIds = this.negocios.map(negocio => 'carousel-' + negocio.id);
   }
@@ -31,7 +32,7 @@ export class ListBusinessComponent implements OnInit{
         }
       },
       error:(error1)=>{
-        console.log(error1);
+        console.log(error1.error.respuesta);
       }
     });
   }

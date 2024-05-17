@@ -78,12 +78,13 @@ export class SignUpComponent {
       }
       if(this.account.name != ""&&this.account.nickname != ""&&this.account.email != ""&&this.account.password != ""&&this.account.city != ""&&this.account.photo!=""){
         console.log(this.account.photo);
+        console.log(this.account);
         this.auth.signUpClient(this.account).subscribe({
           next:(data)=>{
-            alert(data.respuesta);
+            console.log(data.respuesta);
           },
           error:(error)=>{
-            alert(error.respuesta);
+            console.log(error.error.respuesta.error);
           }
         });
       }
