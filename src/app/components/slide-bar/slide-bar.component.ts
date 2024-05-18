@@ -3,11 +3,11 @@ import { RouterModule } from '@angular/router';
 import { business } from '../../model/business';
 import { ClientService } from '../../services/user/client.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
-<<<<<<< HEAD
+
 import { CommonModule } from '@angular/common';
-=======
+
 import { ModalService } from '../../services/ExtServices/modal.service';
->>>>>>> origin/Juan-Cortes
+
 
 
 @Component({
