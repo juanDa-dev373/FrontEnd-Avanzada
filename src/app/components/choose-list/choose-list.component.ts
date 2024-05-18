@@ -11,8 +11,8 @@ declare var $: any;
   templateUrl: './choose-list.component.html',
   styleUrl: './choose-list.component.css'
 })
-export class CreateListComponent {
-  constructor(private routes: Router, private dialog: MatDialogRef<CreateListComponent>,
+export class ChooseListComponent {
+  constructor(private routes: Router, private dialog: MatDialogRef<ChooseListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   close() {
