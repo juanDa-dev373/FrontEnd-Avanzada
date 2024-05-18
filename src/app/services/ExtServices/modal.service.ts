@@ -27,13 +27,13 @@ export class ModalService {
     })
   }
 
-  // openChooseList(){
-  //   this.modal.open(ChooseListComponent, {
-  //     data: {
-  //       name: 'Choose List',
-  //       animal: 'Choose List'
-  //     },
-  //   })
-  // }
+  openChooseList(){
+    this.modal.open(ChooseListComponent, {
+      data: {
+        name: 'Choose List',
+        animal: 'Choose List'
+      },
+    })
+  }
 
 }

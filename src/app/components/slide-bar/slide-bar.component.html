@@ -76,6 +76,11 @@
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
           <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714237469/unilocal/assets/evento_dtoum0.gif" alt="" width="30px" height="30px">My events
         </button>
+        <button class="botones" matTooltip="Create List" matTooltipPosition="after" (click)="openChooseList()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+          </svg>
+        </button>
       </div>
       <div class="collapse" id="orders-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">

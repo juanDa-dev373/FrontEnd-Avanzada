@@ -45,7 +45,7 @@ export class SlideBarComponent implements OnInit{
     openCreateList(){
       this.modal.openCreateList();
     }
-    // openChooseList(){
-    //   this.modal.openChooseList();
-    // }
+    openChooseList(){
+      this.modal.openChooseList();
+    }
 }
