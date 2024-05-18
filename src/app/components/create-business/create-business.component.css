@@ -1,0 +1,24 @@
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+}
+.titulo{
+    background-color: aqua;
+}
+.control-contenedor{
+    width: 400px;
+}
+.control-craousel{
+    width: 300px;
+}
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#map{
+    width: 300px;
+    height: 150px;
+}

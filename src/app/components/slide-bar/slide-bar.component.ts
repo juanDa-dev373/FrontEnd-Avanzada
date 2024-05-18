@@ -10,10 +10,12 @@ import { ModalService } from '../../services/ExtServices/modal.service';
 
 
 
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-slide-bar',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, MatTooltipModule, FormsModule],
   templateUrl: './slide-bar.component.html',
   styleUrl: './slide-bar.component.css'
 })
@@ -33,6 +35,12 @@ export class SlideBarComponent implements OnInit{
             console.log(error1);
           }
         });
+    }
+    viewMessage():boolean{
+      if(this.business.length==0){
+        return true;
+      }
+      return false;
     }
     openCreateList(){
       this.modal.openCreateList();

@@ -13,12 +13,7 @@ export class ClientService {
   constructor(private http:HttpClient,private local:TokenServicesService) { }
 
   public getClientById(){
-    const token = this.local.getToken();
-    console.log(token);
-    const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + token
-    });
-      return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/', {headers:headers});
+      return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/');
   }
 
   public getListBusiness():Observable<MensajeDTO> {
@@ -61,12 +56,7 @@ export class ClientService {
       return this.http.post<MensajeDTO>('','');
   }
   public getAllBusiness(){
-    const token = this.local.getToken();
-    console.log(token);
-    const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + token
-    });
-    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/getAllBusiness', {headers:headers});
+    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/getAllBusiness');
   }
   
   public listBusinessLocation(locationDTO:locationDTO){
@@ -82,12 +72,7 @@ export class ClientService {
   }
   
   public listBusinessOwner():Observable<MensajeDTO>{
-    const token = this.local.getToken();
-    console.log(token);
-    const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + token
-    });
-    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/listBusinessOwner', {headers:headers});
+    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/listBusinessOwner');
   }
   
   public getBusiness(idBusiness:string){

@@ -15,24 +15,33 @@
       </button>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#business-collapse" aria-expanded="false">
-        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1715111390/tienda_trfogs.gif" alt="" width="30px" height="30px">My Business
-      </button>
-      <div class="collapse" id="business-collapse">
+      <div class="contenedor">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#business-collapse" aria-expanded="false">
+          <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1715111390/tienda_trfogs.gif" alt="" width="30px" height="30px">My Business
+        </button>
+        <button class="botones" matTooltip="Create Business" matTooltipPosition="after" routerLink="/home/create-business">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="collapse ejemplo" id="business-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-          <li *ngFor="let index of business; let i =index" >
-            <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
-              {{index.name}}
-            </a>
+          <ng-container *ngIf="viewMessage()">
+            <li class="lista-forma">no hay negocios para mostrar</li>
+          </ng-container>
+          <li class="lista-forma" *ngFor="let index of business; let i =index" >
+            {{index.name}}
           </li>
         </ul>
       </div>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714236467/unilocal/assets/corazon_outem8.gif" alt="" width="30px" height="30px">My favorites
-      </button>
+      <div class="contenedor">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714236467/unilocal/assets/corazon_outem8.gif" alt="" width="30px" height="30px">My favorites
+        </button>
+      </div>
       <div class="collapse" id="dashboard-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
@@ -43,10 +52,16 @@
       </div>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#list-collapse" aria-expanded="false">
-        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714236704/unilocal/assets/marcador_lnvgrc.gif" alt="" width="30px" height="30px">My list
-      </button>
-      <button type="button" class="btn-close" aria-label="Close" (click)="openCreateList()"></button>
+      <div class="contenedor">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#list-collapse" aria-expanded="false">
+          <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714236704/unilocal/assets/marcador_lnvgrc.gif" alt="" width="30px" height="30px">My lists
+        </button>
+        <button class="botones" matTooltip="Create List" matTooltipPosition="after" (click)="openCreateList()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+          </svg>
+        </button>
+      </div>
       <div class="collapse" id="list-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
@@ -57,10 +72,11 @@
       </div>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714237469/unilocal/assets/evento_dtoum0.gif" alt="" width="30px" height="30px">My events
-      </button>
-      <!-- <button type="button" class="btn-close" aria-label="Close" (click)="openChooseList()"></button> -->
+      <div class="contenedor">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714237469/unilocal/assets/evento_dtoum0.gif" alt="" width="30px" height="30px">My events
+        </button>
+      </div>
       <div class="collapse" id="orders-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New</a></li>
@@ -71,9 +87,11 @@
       </div>
     </li>
     <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#reservation-collapse" aria-expanded="false">
-        <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714241893/unilocal/assets/campana-del-hotel_jtkwbs.gif" alt="" width="30px" height="30px">My reservations
-      </button>
+      <div class="contenedor">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#reservation-collapse" aria-expanded="false">
+          <img src="https://res.cloudinary.com/dybshhtw1/image/upload/v1714241893/unilocal/assets/campana-del-hotel_jtkwbs.gif" alt="" width="30px" height="30px">My reservations
+        </button>
+      </div>
       <div class="collapse" id="reservation-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New</a></li>
