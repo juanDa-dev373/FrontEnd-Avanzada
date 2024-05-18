@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { FormsModule } from '@angular/forms';
+import { typeBusiness } from '../../model/typeBusiness';
 
 @Component({
   selector: 'app-create-business',
   standalone: true,
-  imports: [CarouselComponent],
+  imports: [CarouselComponent, FormsModule],
   templateUrl: './create-business.component.html',
   styleUrl: './create-business.component.css'
 })
