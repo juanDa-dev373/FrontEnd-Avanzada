@@ -83,7 +83,9 @@ export class SignUpComponent {
             alert(data.respuesta);
           },
           error:(error)=>{
-            alert(error.respuesta);
+            for(let m in error.error.respuesta){
+              alert(m);
+            } 
           }
         });
       }
