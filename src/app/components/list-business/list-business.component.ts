@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarouselComponent } from '../../components/carousel/carousel.component';
+import { business } from '../../model/business';
+import { ClientService } from '../../services/user/client.service';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -10,34 +13,28 @@ import { CarouselComponent } from '../../components/carousel/carousel.component'
   templateUrl: './list-business.component.html',
   styleUrl: './list-business.component.css'
 })
-export class ListBusinessComponent {
+export class ListBusinessComponent implements OnInit{
   id:string='';
-  negocios= [
-    { nombre: 'Negocio 1', descripcion: 'Descripción del Negocio 1', images:[
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1711831808/cld-sample-3.jpg',
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1711831807/cld-sample-2.jpg',
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1711831805/samples/cup-on-a-table.jpg'
-    ] },
-    { nombre: 'Negocio 2', descripcion: 'Descripción del Negocio 2', images:[
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1714350096/colombia_ebxiij.jpg',
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1714182576/unilocal/l30ls2cnwjpj4ia2cn68.jpg'
-    ] },
-    { nombre: 'Negocio 3', descripcion: 'Descripción del Negocio 3' , images:[
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1711831807/cld-sample.jpg'
-    ]},
-    { nombre: 'Negocio 3', descripcion: 'Descripción del Negocio 3' , images:[
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1711831807/cld-sample.jpg'
-    ]},
-    { nombre: 'Negocio 2', descripcion: 'Descripción del Negocio 2', images:[
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1714350096/colombia_ebxiij.jpg',
-      'https://res.cloudinary.com/dybshhtw1/image/upload/v1714182576/unilocal/l30ls2cnwjpj4ia2cn68.jpg'
-    ] }
-  ];
+  negocios:business[]= [];
   carouselIds: string[] = [];
-
-  constructor() {
+  
+  constructor(private clientService:ClientService, private routes:Router) {
     // Genera identificadores únicos para cada carrusel
-    this.carouselIds = this.negocios.map((_, index) => 'carousel-' + index);
+    this.carouselIds = this.negocios.map(negocio => 'carousel-' + negocio.id);
+  }
+  ngOnInit(): void {
+    this.clientService.getAllBusiness().subscribe({
+      next:(data)=>{
+        if (data && data.respuesta && Array.isArray(data.respuesta)) {
+          this.negocios = data.respuesta;
+        } else {
+          console.error('La respuesta del servidor no tiene el formato esperado:', data);
+        }
+      },
+      error:(error1)=>{
+        console.log(error1.error.respuesta);
+      }
+    });
   }
 
 }

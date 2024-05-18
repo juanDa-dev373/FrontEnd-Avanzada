@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AsyncLocalStorage } from 'async_hooks';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -6,11 +7,69 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class TokenServicesService {
-
+  constructor(private router:Router){}
   setToken(token:string){
-    localStorage.setItem("token", token);
+    window.sessionStorage.removeItem("token");
+    window.sessionStorage.setItem("token", token);
   }
   getToken():string|null{
-    return localStorage.getItem("token");
+    return window.sessionStorage.getItem("token");
   }
+  signUp(){
+    window.sessionStorage.clear();
+    this.router.navigate([""]);
+  }
+  public isLogged(): boolean {
+    if (this.getToken()) {
+      return true;
+    }
+    return false;
+  }
+  private decodePayload(token: string): any {
+    const payload = token!.split(".")[1];
+    const payloadDecoded = Buffer.from(payload, 'base64').toString('ascii');
+    const values = JSON.parse(payloadDecoded);
+    return values;
+  }
+  public getCodigo(): string {
+    const token = this.getToken();
+    if (token) {
+    const values = this.decodePayload(token);
+    return values.id;
+    }
+    return "";
+  }
+  public getRole(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      return values.rol;
+    }
+    return "";
+  }
+  public getNickName(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      return values.nickname;
+    }
+    return "";
+  }
+  public getName(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      return values.name;
+    }
+    return "";
+  }
+  public getPhoto(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      return values.photo;
+    }
+    return "";
+  }
+
 }

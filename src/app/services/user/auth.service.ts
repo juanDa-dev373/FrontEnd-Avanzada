@@ -5,6 +5,7 @@ import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
 import { loginDTO } from '../../dto/loginDTO';
 import { signUpDTO } from '../../dto/signUpDTO';
+import { changePasswordDTO } from '../../dto/changePasswordDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class AuthService {
     return this.http.post<MensajeDTO>(enviroments.urlApi+"/auth/singUp-client", sign);
   }
 
-  public passwordRecovery():Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>('','');
+  public passwordRecovery(changePasswordDTO:changePasswordDTO, tokenRecovery:string):Observable<MensajeDTO>{
+    return this.http.post<MensajeDTO>('http://localhost:8083/api/auth/passwordRecovery/'+tokenRecovery,changePasswordDTO);
   }
 
   public forgotPassword(email:string):Observable<MensajeDTO>{

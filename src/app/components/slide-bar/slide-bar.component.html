@@ -21,9 +21,11 @@
       <div class="collapse" id="business-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Weekly</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Monthly</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li>
+          <li *ngFor="let index of business; let i =index" >
+            <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+              {{index.name}}
+            </a>
+          </li>
         </ul>
       </div>
     </li>

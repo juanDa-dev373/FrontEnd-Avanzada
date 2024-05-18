@@ -2,6 +2,7 @@ import { Component,Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TokenServicesService } from '../../../services/ExtServices/token-services.service';
 declare var $:any;
 
 
@@ -14,7 +15,7 @@ declare var $:any;
 })
 export class DialogComponent {
   constructor(private routes:Router,private dialog:MatDialogRef<DialogComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data: any){}
+    @Inject(MAT_DIALOG_DATA) public data: any,private local:TokenServicesService){}
 
   ngOnInit(): void {
   }
@@ -23,6 +24,7 @@ export class DialogComponent {
     this.dialog.close();
   }
   signOut(){
+    this.local.signUp();
     this.routes.navigate(['']);
     this.dialog.close();
   }

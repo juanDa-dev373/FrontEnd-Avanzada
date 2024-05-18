@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
@@ -13,9 +13,14 @@ export class ClientService {
 
     constructor(private http: HttpClient, private local: TokenServicesService) { }
 
-    public getClientById() {
-        return this.http.get<MensajeDTO>('');
-    }
+  public getClientById(){
+    const token = this.local.getToken();
+    console.log(token);
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+    });
+      return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/', {headers:headers});
+  }
 
     public getListBusiness(): Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>('');
@@ -53,37 +58,42 @@ export class ClientService {
         return this.http.delete<MensajeDTO>('');
     }
 
-    public updateBusiness(): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>('', '');
-    }
-    public getAllBusiness() {
-        const token = this.local.getToken;
-        console.log(token);
-        const headers = new HttpHeaders({
-            'Authorization': 'Bearer Token ' + token
-        });
-        return this.http.get<any>('http://localhost:8083/api/clients/getAllBusiness', { headers: headers });
-    }
-
-    public listBusinessLocation(locationDTO: locationDTO) {
-        return this.http.get('');
-    }
-
-    public listBusinessName(): Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>('');
-    }
-
-    public listBusinessType(): Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>('');
-    }
-
-    public listBusinessOwner(): Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>('');
-    }
-
-    public getBusiness(idBusiness: string) {
-        return this.http.get<MensajeDTO>('');
-    }
+  public updateBusiness():Observable<MensajeDTO>{
+      return this.http.post<MensajeDTO>('','');
+  }
+  public getAllBusiness(){
+    const token = this.local.getToken();
+    console.log(token);
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/getAllBusiness', {headers:headers});
+  }
+  
+  public listBusinessLocation(locationDTO:locationDTO){
+      return this.http.get('');
+  }
+  
+  public listBusinessName():Observable<MensajeDTO> {
+      return this.http.get<MensajeDTO>('');
+  }
+  
+  public listBusinessType():Observable<MensajeDTO>{
+      return this.http.get<MensajeDTO>('');
+  }
+  
+  public listBusinessOwner():Observable<MensajeDTO>{
+    const token = this.local.getToken();
+    console.log(token);
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/listBusinessOwner', {headers:headers});
+  }
+  
+  public getBusiness(idBusiness:string){
+      return this.http.get<MensajeDTO>('');
+  }
 
     public createComment(/*CreateCommentDTO createCommentDTO*/) {
         return this.http.post<MensajeDTO>('', '');
