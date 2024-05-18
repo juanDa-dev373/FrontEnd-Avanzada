@@ -26,4 +26,13 @@ export class ModalService {
     })
   }
 
+  openChooseList(){
+    this.modal.open(CreateListComponent, {
+      data: {
+        name: 'Create List',
+        animal: 'Create List'
+      },
+    })
+  }
+
 }
