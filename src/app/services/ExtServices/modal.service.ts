@@ -37,13 +37,13 @@ export class ModalService {
     })
   }
 
-  // createEvent(){
-  //   this.modal.open(CreateEventComponent, {
-  //     data: {
-  //       name: 'Choose List',
-  //       animal: 'Choose List'
-  //     },
-  //   })
-  // }
+  createEvent(){
+    this.modal.open(CreateEventComponent, {
+      data: {
+        name: 'Choose List',
+        animal: 'Choose List'
+      },
+    })
+  }
 
 }
