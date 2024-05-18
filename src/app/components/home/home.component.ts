@@ -8,6 +8,7 @@ import { client } from '../../model/client';
 import { ClientService } from '../../services/user/client.service';
 import { accountDetailDTO } from '../../dto/accountDetailDTO';
 import { SlideBarComponent } from '../slide-bar/slide-bar.component';
+import { SlideBarComponent } from '../slide-bar/slide-bar.component';
 
 @Component({
   selector: 'app-home',
