@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PopupService } from '../../services/ExtServices/popup.service';
 import { ModalService } from '../../services/ExtServices/modal.service';
-import { accountDetailDTO } from '../../dto/accountDetailDTO';
+import { accountDetailDTO } from '../../dto/AccountDetailDTO';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
 
 @Component({

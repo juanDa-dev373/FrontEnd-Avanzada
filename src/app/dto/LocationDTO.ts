@@ -1,6 +1,8 @@
-export class locationDTO{
+import { Location } from "../model/Location";
+
+export class LocationDTO {
     constructor(
-        public latitude:number=0,
-        public longitude:number=0
-    ){}
+        public location: Location,
+        public maxDistance: number
+    ) {}
 }

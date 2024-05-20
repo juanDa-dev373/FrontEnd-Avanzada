@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
-import { locationDTO } from '../../dto/LocationDTO';
+import { locationDTO } from '../../model/Location';
 import { TokenServicesService } from '../ExtServices/token-services.service';
 import { enviroments } from '../../../enviroments/enviroments';
 

@@ -1,5 +1,5 @@
 import { HistoryReview } from "../model/HistoryReview";
-import { Schedule } from "../model/schedule";
+import { Schedule } from "../model/Schedule";
 import { TypeBusiness } from "../model/typeBusiness"
 export class AddBusinessDTO {
     constructor(

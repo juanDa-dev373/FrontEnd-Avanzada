@@ -1,4 +1,4 @@
-import { StateBusiness } from "./stateBusiness";
+import { StateBusiness } from "./StateBusiness";
 
 export class HistoryReview {
     constructor(

@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { client } from '../../model/client';
 import { ClientService } from '../../services/user/client.service';
-import { accountDetailDTO } from '../../dto/accountDetailDTO';
+import { accountDetailDTO } from '../../dto/AccountDetailDTO';
 
 @Component({
   selector: 'app-home',
