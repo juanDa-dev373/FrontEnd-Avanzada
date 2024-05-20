@@ -10,6 +10,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { LoginGuard } from './services/guards/permissions.service';
 import { RolesGuard } from './services/guards/roles.service';
 import { CreateBusinessComponent } from './components/create-business/create-business.component';
+import { BusinessDatailComponent } from './components/business-datail/business-datail.component';
+
 export const routes: Routes = [
     {
         path:'', component:LoginComponent, canActivate:[LoginGuard]
@@ -28,6 +30,8 @@ export const routes: Routes = [
                 path:'list-business', component:ListBusinessComponent
             },{
                 path:'create-business', component:CreateBusinessComponent
+            },{
+                path:'business-details/:idBusiness', component:BusinessDatailComponent
             }
         ]
     },

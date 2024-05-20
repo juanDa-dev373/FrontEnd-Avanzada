@@ -4,6 +4,8 @@ import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
 import { locationDTO } from '../../dto/LocationDTO';
 import { TokenServicesService } from '../ExtServices/token-services.service';
+import { addBusiness } from '../../dto/addBusinessDTO';
+import { enviroments } from '../../../enviroments/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -44,8 +46,8 @@ export class ClientService {
       return this.http.delete<MensajeDTO>('');
   }
   
-  public addBusiness():Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>('','');
+  public addBusiness(addBusiness:addBusiness):Observable<MensajeDTO>{
+      return this.http.post<MensajeDTO>(enviroments.urlApi+'/clients/addBusinessClient' ,addBusiness);
   }
 
   public deleteBusiness():Observable<MensajeDTO>{
@@ -76,7 +78,7 @@ export class ClientService {
   }
   
   public getBusiness(idBusiness:string){
-      return this.http.get<MensajeDTO>('');
+      return this.http.get<MensajeDTO>(enviroments.urlApi+'/clients/getBusiness/'+idBusiness);
   }
 
   public createComment(/*CreateCommentDTO createCommentDTO*/) {

@@ -3,13 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { business } from '../../model/business';
 import { ClientService } from '../../services/user/client.service';
-import { Router, RouterLink } from '@angular/router';
-
-
+import { Router, RouterModule} from '@angular/router';
 @Component({
   selector: 'app-list-business',
   standalone: true,
-  imports: [CommonModule, CarouselComponent],
+  imports: [CommonModule, CarouselComponent,RouterModule],
   templateUrl: './list-business.component.html',
   styleUrl: './list-business.component.css'
 })
@@ -36,5 +34,7 @@ export class ListBusinessComponent implements OnInit{
       }
     });
   }
-
+  detailsBusiness(id:string){
+    this.routes.navigate(['/home/business-details',id]);
+  }
 }

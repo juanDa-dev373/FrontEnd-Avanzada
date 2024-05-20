@@ -15,8 +15,8 @@ import { TokenServicesService } from '../../services/ExtServices/token-services.
 export class HeaderComponent {  
   constructor(private popup:PopupService, private modal:ModalService, private token:TokenServicesService){
   }
-  // photo=this.token.getPhoto();
-  // nickname=this.token.getNickName();
+  photo=this.token.getPhoto();
+  nickname=this.token.getNickName();
   openSnackBar() {
     this.popup.openSnackBar('aceptar');
   }

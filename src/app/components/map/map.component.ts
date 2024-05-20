@@ -19,7 +19,7 @@ export class MapComponent implements OnInit{
   ngOnInit(): void {
     this.map.crearMapa();
     this.map.agregarMarcador().subscribe((marcador)=>{
-      console.log(marcador.lat +"-"+marcador.lng);
+      console.log(marcador.lat +"-"+ marcador.lng);
     });
     this.clientService.getAllBusiness().subscribe({
       next:(data)=>{

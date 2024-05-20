@@ -8,17 +8,17 @@ import { typeBusiness } from "./typeBusiness";
 export class business{
     constructor(
         public id:string='',
-        public name:string,
-        public description:string,
-        public idClient:string,
+        public name:string='',
+        public description:string='',
+        public idClient:string='',
         public location:locationDTO,
-        public images:string[],
+        public images:string[]=[],
         public typeBusiness:typeBusiness,
-        public timeSchedules:schedule[],
-        public phone:string[],
+        public timeSchedules:schedule[]=[],
+        public phone:string[]=[],
         public review:historyReview,
         public stateBusiness:stateBusiness,
         public state:stateRecord,
-        public open:boolean
+        public open:boolean=false
     ){}
 }
