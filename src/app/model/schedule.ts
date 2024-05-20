@@ -1,4 +1,4 @@
-export class schedule{
+export class Schedule{
     constructor(
         public day:string,
         public end:string,

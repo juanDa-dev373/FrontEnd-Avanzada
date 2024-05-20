@@ -1,3 +1,3 @@
-export enum stateRecord{
+export enum StateRecord{
     ACTIVE, INACTIVE
 }

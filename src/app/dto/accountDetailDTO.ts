@@ -1,4 +1,4 @@
-import { stateRecord } from "../model/stateRecord";
+import { StateRecord } from "../model/stateRecord";
 
 export class accountDetailDTO{
     constructor(
@@ -6,6 +6,6 @@ export class accountDetailDTO{
        public name:string,
        public nickname:string,
        public email:string,
-       public login:stateRecord
+       public login:StateRecord
     ){}
 }

@@ -1,11 +1,11 @@
-import { stateBusiness } from "./stateBusiness";
+import { StateBusiness } from "./stateBusiness";
 
-export class historyReview{
+export class HistoryReview {
     constructor(
-        public description:string,
-        public stateBusiness:stateBusiness,
-        public date:Date,
-        public idModerator:string,
-        public idBusiness:string
-    ){}
+        public description: string,
+        public stateBusiness: StateBusiness,
+        public date: string,  // ISO 8601 date string format
+        public idModerator: string,
+        public idBusiness: string
+    ) {}
 }
