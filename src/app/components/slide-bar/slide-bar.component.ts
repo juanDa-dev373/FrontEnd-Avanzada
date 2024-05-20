@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { business } from '../../model/business';
+import { Business } from '../../model/Business';
 import { ClientService } from '../../services/user/client.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
 
@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './slide-bar.component.css'
 })
 export class SlideBarComponent implements OnInit{
-  business:business[]=[];
+  business:Business[]=[];
   listbusines: any[]=[]
   constructor(private clientService:ClientService, private local:TokenServicesService, private modal:ModalService){}
   ngOnInit(): void {

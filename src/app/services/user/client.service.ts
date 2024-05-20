@@ -1,121 +1,141 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
-import { locationDTO } from '../../model/Location';
 import { TokenServicesService } from '../ExtServices/token-services.service';
 import { enviroments } from '../../../enviroments/enviroments';
+import { MensajeDTO } from '../../dto/mensajeDTO';
+import { AddBusinessDTO } from '../../dto/AddBusinessDTO';
+import { BusinessToListDTO } from '../../dto/BusinessToListDTO';
+import { CalificationDTO } from '../../dto/CalificationDTO';
+import { CreateCommentDTO } from '../../dto/CreateCommentDTO';
+import { DeleteBusinessDTO } from '../../dto/DeleteBusinessDTO';
+import { DeleteCommentDTO } from '../../dto/DeleteCommentDTO';
+import { DeleteEventDTO } from '../../dto/DeleteEventDTO';
+import { EventDTO } from '../../dto/EventDTO';
+import { GetEventDTO } from '../../dto/GetEventDTO';
+import { LocationDTO } from '../../dto/LocationDTO';
+import { ResponseCommentDTO } from '../../dto/ResponseCommentDTO';
+import { UpdateBusinessDTO } from '../../dto/UpdateBusinessDTO';
+import { TypeBusiness } from '../../model/typeBusiness';
+import { UpdateEventDTO } from '../../dto/UpdateEventDTO';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ClientService {
 
+    private apiUrl = enviroments.urlApi;
+
     constructor(private http: HttpClient, private local: TokenServicesService) { }
 
-  public getClientById(){
-      return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/');
-  }
-
-    public getListBusiness(): Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>('');
+    public getClientById() {
+        return this.http.get<MensajeDTO>(enviroments.urlApi +'/api/clients/');
+    }
+    public getListBusiness(nameList: string) {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusiness`, { params: { nameList } });
     }
 
-    public getListsBusinesses(): Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>('');
+    public getListsBusinesses() {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listsBusinesses`);
     }
 
-    public listClient() {
-        return this.http.get<MensajeDTO>('');
+    public createBusinessList(listName: string) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/createBusinessList`, null, { params: { listName } });
     }
 
-    public createBusinessList(name: string): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>(enviroments.urlApi + '/api/clients/createBusinessList?listName=' + name, undefined);
+    public deleteBusinessList(listName: string) {
+        return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessList`, { params: { listName } });
     }
 
-    public deleteBusinessList(name: string): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>(enviroments.urlApi + '/api/clients/deleteBusinessLis?listName=' + name, undefined);
+    public addBusinessToList(addBusiness: BusinessToListDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/addBusinessToList`, addBusiness);
     }
 
-    public addBusinessToList(): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>('', '');
+    public deleteBusinessToList(removeBusiness: BusinessToListDTO) {
+        return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessToList`, { body: removeBusiness });
     }
 
-    public deleteBusinessToList(): Observable<MensajeDTO> {
-        return this.http.delete<MensajeDTO>('');
+    public addBusiness(addBusinessDTO: AddBusinessDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/addBusinessClient`, addBusinessDTO);
     }
 
-    public addBusiness(): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>('', '');
+    public deleteBusiness(deleteBusinessDTO: DeleteBusinessDTO) {
+        return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessClient`, { body: deleteBusinessDTO });
     }
 
-    public deleteBusiness(): Observable<MensajeDTO> {
-        return this.http.delete<MensajeDTO>('');
+    public updateBusiness(updateBusinessDTO: UpdateBusinessDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/updateBusiness`, updateBusinessDTO);
     }
 
-  public updateBusiness():Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>('','');
-  }
-  public getAllBusiness(){
-    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/getAllBusiness');
-  }
-  
-  public listBusinessLocation(locationDTO:locationDTO){
-      return this.http.get('');
-  }
-  
-  public listBusinessName():Observable<MensajeDTO> {
-      return this.http.get<MensajeDTO>('');
-  }
-  
-  public listBusinessType():Observable<MensajeDTO>{
-      return this.http.get<MensajeDTO>('');
-  }
-  
-  public listBusinessOwner():Observable<MensajeDTO>{
-    return this.http.get<MensajeDTO>('http://localhost:8083/api/clients/listBusinessOwner');
-  }
-  
-  public getBusiness(idBusiness:string){
-      return this.http.get<MensajeDTO>('');
-  }
+    public getAllBusiness() {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getAllBusiness`);
+    }
 
-    public createComment(/*CreateCommentDTO createCommentDTO*/) {
-        return this.http.post<MensajeDTO>('', '');
+    public listBusinessLocation(locationDTO: LocationDTO) {
+        // return this.http.get<MensajeDTO<Business[]>>(`${this.apiUrl}/api/clients/listBusinessLocation`, { params: locationDTO });
     }
-    public responseComment( /*ResponseCommentDTO responseCommentDTO*/): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>('', '');
+
+    public listBusinessName(name: string) {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessName/${name}`);
     }
+
+    public listBusinessType(type: TypeBusiness) {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessType/${type}`);
+    }
+
+    public listBusinessOwner() {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessOwner`);
+    }
+
+    public getBusiness(idBusiness: string) {
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getBusiness/${idBusiness}`);
+    }
+
+    public createComment(createCommentDTO: CreateCommentDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/createComment`, createCommentDTO);
+    }
+
+    public responseComment(responseCommentDTO: ResponseCommentDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/responseComment`, responseCommentDTO);
+    }
+
     public listComment(idBusiness: string) {
-        return this.http.get<MensajeDTO>('');
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/${idBusiness}/listComment`);
     }
 
-    public calification(/*CalificationDTO calificationDTO*/): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>('', '');
+    public calification(calificationDTO: CalificationDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/calification`, calificationDTO);
     }
+
     public getComment(idComment: string, idBusiness: string) {
-        return this.http.get<MensajeDTO>('');
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getComment`, { params: { idComment, idBusiness } });
     }
 
-    public deleteComment(/*DeleteCommentDTO deleteCommentDTO*/) {
-        return this.http.delete<MensajeDTO>('');
+    public deleteComment(deleteCommentDTO: DeleteCommentDTO) {
+        return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteComment`, { body: deleteCommentDTO });
     }
-    public createEvent(/*EventDTO eventDTO*/): Observable<MensajeDTO> {
-        return this.http.post<MensajeDTO>('', '');
+
+    public createEvent(eventDTO: EventDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/createEvent`, eventDTO);
     }
+
     public listEventBusiness(idBusiness: string) {
-        return this.http.get<MensajeDTO>('');
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/${idBusiness}/listEventBusiness`);
     }
-    public updateEvent(/*UpdateEventDTO updateEventDTO*/) {
-        return this.http.post<MensajeDTO>('', '');
+
+    public updateEvent(updateEventDTO: UpdateEventDTO) {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/updateEvent`, updateEventDTO);
     }
-    public getEvent(/*GetEventDTO getEventDTO*/) {
-        return this.http.get<MensajeDTO>('');
+
+    public getEvent(getEventDTO: GetEventDTO) {
+        // return this.http.get<MensajeDTO<Event>>(`${this.apiUrl}/api/clients/getEvent`, { body: getEventDTO });
     }
-    public deleteEvent( /*DeleteEventDTO deleteEventDTO*/) {
-        return this.http.delete<MensajeDTO>('');
+
+    public deleteEvent(deleteEventDTO: DeleteEventDTO) {
+        return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteEvent`, { body: deleteEventDTO });
     }
-    public logOutUser(token: string) {
-        return this.http.post<MensajeDTO>('', '');
+
+    public logOutUser() {
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/logOutUser`, null);
     }
 }
