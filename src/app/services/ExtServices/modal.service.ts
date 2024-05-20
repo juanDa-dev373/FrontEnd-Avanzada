@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../../components/popups/dialog/dialog.component';
 import { CreateListComponent } from '../../components/create-list/create-list.component';
+import { ChooseListComponent } from '../../components/choose-list/choose-list.component';
+import { CreateEventComponent } from '../../components/create-event/create-event.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +27,23 @@ export class ModalService {
     })
     
   }
+
+  openChooseList(){
+    this.modal.open(ChooseListComponent, {
+      data: {
+        name: 'Choose List',
+        animal: 'Choose List'
+      },
+    })
+  }
+
+  // createEvent(){
+  //   this.modal.open(CreateEventComponent, {
+  //     data: {
+  //       name: 'Choose List',
+  //       animal: 'Choose List'
+  //     },
+  //   })
+  // }
 
 }

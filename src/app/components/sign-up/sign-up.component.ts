@@ -76,17 +76,18 @@ export class SignUpComponent {
         this.validateCity = this.validateCity+" is-invalid";
         this.warningCity = false;
       }
-      if(this.account.name != ""&&this.account.nickname != ""&&this.account.email != ""&&this.account.password != ""&&this.account.city != ""&&this.account.photo!=""){
-        console.log(this.account.photo);
-        console.log(this.account);
+      if(this.account.name != ""&&this.account.nickname != ""&&this.account.email != ""&&this.account.password != ""&&this.account.city != ""){
+        this.account.photo=this.image;
         this.auth.signUpClient(this.account).subscribe({
           next:(data)=>{
-            console.log(data.respuesta);
+            alert(data.respuesta);
           },
           error:(error)=>{
-            for(let m in error.error.respuesta){
-              alert(m);
-            } 
+            let message:string='';
+            for(let err of error.error.respuesta){
+              message += "campo: " +err.campo+ ", error: " + err.error +"\n";
+            }
+            alert(message);
           }
         });
       }

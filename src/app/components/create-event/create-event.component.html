@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="title">Event</h1>
+    <div class="text">Enter the event details</div>
+    <div>name</div>
+
+    <input type="text" class="form-control" id="list-name" placeholder="Name">
+    <div>Descripcion</div>
+
+    <input type="text" class="form-control" id="list-descripcion" placeholder="Description">
+
+    <div>Date</div>
+    <mat-form-field class="mat-mdc-form-field-flex">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker" class="custom-datepicker-toggle"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <div class="container-buttons">
+        <button type="button" class="btn btn-dark" id="new-button">Choose</button>
+        <button type="button" class="btn btn-exit" (click)="close()">Exit</button>
+    </div>
+</div>

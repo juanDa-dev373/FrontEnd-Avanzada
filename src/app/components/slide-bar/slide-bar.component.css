@@ -5,3 +5,26 @@ a{
 .my-rotate{
     transform: rotate(180deg);
 }
+.ejemplo{
+    margin-left: 20px;
+}
+.lista-forma{
+    margin: 7px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    font-weight: bold;
+    width: 80%;
+}
+.lista-forma:hover{
+    background-color: black;
+    color: white;
+}
+.botones{
+    border-style: none;
+    background-color: transparent;
+}
+.contenedor{
+    display: flex;
+    justify-content: space-between;
+}
