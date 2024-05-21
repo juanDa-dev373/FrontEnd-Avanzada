@@ -4,13 +4,14 @@ import { DialogComponent } from '../../components/popups/dialog/dialog.component
 import { CreateListComponent } from '../../components/create-list/create-list.component';
 import { ChooseListComponent } from '../../components/choose-list/choose-list.component';
 import { CreateEventComponent } from '../../components/create-event/create-event.component';
+import { ClientService } from '../user/client.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
 
-  constructor(private modal:MatDialog) { }
+  constructor(private modal:MatDialog, private cliente:ClientService) { }
   
   openModalSingOut(){
     this.modal.open(DialogComponent, {
@@ -18,22 +19,21 @@ export class ModalService {
       panelClass:'modal-dialog"',
       disableClose: true
     });
+
   }
 
-  openCreateList(list:any){
-    this.modal.open(CreateListComponent, {
-      data: { list: list },
+  openCreateList(list:any[]){
+    
+    const ref=this.modal.open(CreateListComponent, {
+      data: { list },
       disableClose: true
     })
-    
+    return ref;
   }
 
   openChooseList(){
     this.modal.open(ChooseListComponent, {
-      data: {
-        name: 'Choose List',
-        animal: 'Choose List'
-      },
+      disableClose: true
     })
   }
 

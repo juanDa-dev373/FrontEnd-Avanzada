@@ -10,7 +10,7 @@ import { ModalService } from '../../services/ExtServices/modal.service';
 
 
 
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-slide-bar',
@@ -19,37 +19,55 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './slide-bar.component.html',
   styleUrl: './slide-bar.component.css'
 })
-export class SlideBarComponent implements OnInit{
-  business:Business[]=[];
-  listbusines: any[]=[]
-  constructor(private clientService:ClientService, private local:TokenServicesService, private modal:ModalService){}
+export class SlideBarComponent implements OnInit {
+  business: Business[] = [];
+  listsbusinesses: any[] = []
+  constructor(private clientService: ClientService, private local: TokenServicesService, private modal: ModalService) { }
   ngOnInit(): void {
-        this.clientService.listBusinessOwner().subscribe({
-          next:(data)=>{
-            if (data && data.respuesta && Array.isArray(data.respuesta)) {
-              this.business = data.respuesta;
-            } else {
-              console.error('La respuesta del servidor no tiene el formato esperado:', data);
-            }
-          },
-          error:(error1)=>{
-            console.log(error1);
-          }
-        });
-    }
-    viewMessage():boolean{
-      if(this.business.length==0){
-        return true;
+    this.clientService.listBusinessOwner().subscribe({
+      next: (data) => {
+        if (data && data.respuesta && Array.isArray(data.respuesta)) {
+          this.business = data.respuesta;
+        } else {
+          console.error('La respuesta del servidor no tiene el formato esperado:', data);
+        }
+      },
+      error: (error1) => {
+        console.log(error1);
       }
-      return false;
+    });
+    this.getListsBusinesses();
+  }
+  viewMessage(): boolean {
+    if (this.business.length == 0) {
+      return true;
     }
-    openCreateList(){
-      this.modal.openCreateList(this.listbusines);
-    }
-    openChooseList(){
-      this.modal.openChooseList();
-    }
-    // openCreateEvent(){
-    //   this.modal.createEvent();
-    // }
+    return false;
+  }
+  openCreateList() {
+    const ref = this.modal.openCreateList(this.listsbusinesses);
+    ref.afterClosed().subscribe(() => {
+      this.getListsBusinesses();
+    });
+  }
+  openChooseList() {
+    this.modal.openChooseList();
+  }
+  getListsBusinesses(){
+    this.clientService.getListsBusinesses().subscribe({
+      next: (data) => {
+        if (data && data.respuesta && Array.isArray(data.respuesta)) {
+          this.listsbusinesses = data.respuesta;
+        } else {
+          console.error('La respuesta del servidor no tiene el formato esperado:', data);
+        }
+      },
+      error: (error1) => {
+        console.log(error1);
+      }
+    });
+  }
+  // openCreateEvent(){
+  //   this.modal.createEvent();
+  // }
 }

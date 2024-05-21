@@ -46,7 +46,12 @@ export class LoginComponent {
           this.routes.navigate(['/home/list-business']);
         }, 
         error: (err:any) => {
-          alert('El error es: '+err.error.respuesta);
+          let mensaje="";
+          for (let e of err.error.respuesta) {
+            mensaje+="Campo: "+ e.campo+"  Error: " +e.error+"\n";
+  
+          }
+           alert(mensaje);
         }
 
       });  

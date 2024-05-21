@@ -2,16 +2,15 @@
     <h1 class="title">Choose List</h1>
     <div class="text">Press the new button to choose a new list.</div>
     <div>List</div>
-    <ul class="list-group">
-        <li class="list-group-item">Apps</li>
-        <li class="list-group-item">Games</li>
-        <li class="list-group-item">Movies</li>
-        <li class="list-group-item">Books</li>
-        <li class="list-group-item">Newspapers</li>
-    </ul>
+    <div class="list-container">
+        <ul class="list-group">
+            <li class="list-group-item " *ngFor="let listName of list; let i = index;" (click)="addBusinessToList(listName)">
+                {{listName.listName}}
+            </li>
+        </ul>
+    </div>
     <!-- <input type="text" class="form-control" id="list-name" placeholder="Name"> -->
     <div class="container-buttons">
-        <button type="button" class="btn btn-dark" id="new-button">Choose</button>
-        <button type="button" class="btn btn-dark" (click)="close()">Exit</button>
+        <button type="button" class="btn btn-dark" (click)="close()">Cancel</button>
     </div>
 </div>
