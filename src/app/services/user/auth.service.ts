@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   public getToken(login:loginDTO): Observable<MensajeDTO>{
-    return this.http.post<MensajeDTO>(enviroments.urlApi+'/auth/login-client', login); 
+    return this.http.post<MensajeDTO>(enviroments.urlApi+'/api/auth/login-client', login); 
   }
   public loginClient():Observable<MensajeDTO>{
       return this.http.post<MensajeDTO>('', '');
@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   public signUpClient(sign:signUpDTO):Observable<MensajeDTO>{
-    return this.http.post<MensajeDTO>(enviroments.urlApi+"/auth/singUp-client", sign);
+    return this.http.post<MensajeDTO>(enviroments.urlApi+"/api/auth/singUp-client", sign);
   }
 
   public passwordRecovery(changePasswordDTO:ChangePasswordDTO, tokenRecovery:string):Observable<MensajeDTO>{
@@ -32,6 +32,6 @@ export class AuthService {
   }
 
   public forgotPassword(email:string):Observable<MensajeDTO>{
-    return this.http.post<MensajeDTO>(enviroments.urlApi+"/auth/forgotPassword?email="+email, null);
+    return this.http.post<MensajeDTO>(enviroments.urlApi+"/api/auth/forgotPassword?email="+email, null);
   }
 }
