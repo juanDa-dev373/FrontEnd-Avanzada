@@ -2,13 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blue;
-}
-.titulo{
-    background-color: aqua;
 }
 .control-contenedor{
-    width: 400px;
+    width: 549px;
 }
 .control-craousel{
     width: 300px;
@@ -19,6 +15,30 @@
     align-items: center;
 }
 #map{
+    width: 80%;
+    height: 200px;
+    border-radius: 10px;
+}
+.margen div{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.contenedor-elementos{
+    display:flex;
+    justify-content: space-between;
+
+}
+.botones{
+    border-style: none;
+    background-color: transparent;
+}
+.contenedor-inputs{
+    display: flex;
+    justify-content: space-between;
+}
+.divs-contenedor{
+    width: 150px;
+}
+.tamanio{
     width: 300px;
-    height: 150px;
 }

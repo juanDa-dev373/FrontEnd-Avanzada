@@ -77,7 +77,9 @@ export class SignUpComponent {
         this.warningCity = false;
       }
       if(this.account.name != ""&&this.account.nickname != ""&&this.account.email != ""&&this.account.password != ""&&this.account.city != ""){
-        this.account.photo=this.image;
+        if(this.account.photo === ''){
+          this.account.photo=this.image;
+        }
         this.auth.signUpClient(this.account).subscribe({
           next:(data)=>{
             alert(data.respuesta);
@@ -105,11 +107,9 @@ export class SignUpComponent {
     this.imageS.saveImageCloudinary(formData).subscribe({
       next:(data)=>{
           this.cloudinary=data.respuesta;
-          console.log(this.cloudinary);
           if (this.cloudinary.hasOwnProperty('secure_url')) {
             this.image = this.cloudinary['secure_url'];
             this.account.photo = this.image;
-            console.log(this.image)
           } 
           this.isLoading=false;
       },

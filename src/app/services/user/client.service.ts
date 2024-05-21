@@ -18,6 +18,8 @@ import { ResponseCommentDTO } from '../../dto/ResponseCommentDTO';
 import { UpdateBusinessDTO } from '../../dto/UpdateBusinessDTO';
 import { TypeBusiness } from '../../model/typeBusiness';
 import { UpdateEventDTO } from '../../dto/UpdateEventDTO';
+import { addBusiness } from '../../dto/addBusinessDTO';
+import { enviroments } from '../../../enviroments/enviroments';
 
 @Injectable({
     providedIn: 'root'
@@ -51,6 +53,13 @@ export class ClientService {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/addBusinessToList`, addBusiness);
     }
 
+  public deleteBusinessToList():Observable<MensajeDTO>{
+      return this.http.delete<MensajeDTO>('');
+  }
+  
+  public addBusiness(addBusiness:addBusiness):Observable<MensajeDTO>{
+      return this.http.post<MensajeDTO>(enviroments.urlApi+'/clients/addBusinessClient' ,addBusiness);
+  }
     public deleteBusinessToList(removeBusiness: BusinessToListDTO) {
         return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessToList`, { body: removeBusiness });
     }

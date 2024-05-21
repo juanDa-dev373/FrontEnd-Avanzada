@@ -11,11 +11,11 @@
 }
 .name{
     border: none;
-    background-color: white;
+    background-color: transparent;
     -webkit-text-fill-color: black;
     font-family: 'Arial Narrow';
     font-size: 20px;
-    text-align: center;
+    text-align: end;
 }
 .custom-dialog {
     border-radius: 10px;

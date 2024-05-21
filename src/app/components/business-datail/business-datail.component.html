@@ -1,0 +1,73 @@
+
+<div class="centrar title"><h1>{{businessDetail.name}}</h1></div>
+<div class="contenedor-principal" >
+    <div class="shadow p-3 mb-5 bg-body-tertiary rounded contenedor-hijo-izquierdo">
+        <div class="centrar">
+            <div class="caroucel-size">
+                <app-carousel [images]="businessDetail.images" [id]="'myImages'"></app-carousel>
+            </div>
+        </div>
+        <div class="form-floating text-area">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" disabled>{{businessDetail.description}}</textarea>
+            <label for="floatingTextarea2">description</label>
+        </div>
+        <div class="shadow p-3 mb-5 bg-body-tertiary rounded events-container text-area">
+            <div>
+                <h3 class="title">Events</h3>
+            </div>
+            <div style="height: 43%;">
+                <ul>
+                    <li>
+                        hola
+                    </li>
+                </ul>
+            </div>
+            <div class="centrar" style="margin-bottom: 1%;">
+                <Button class="btn btn-ligth btn-outline-dark">Reservation</Button>
+            </div>
+        </div>
+    </div>
+    <div class="contenedor-hijo-derecho">
+        <div class="container-map">
+            <div id="map">
+            </div>
+        </div>
+        <div>
+            <div class="contenedor-calificacion">
+                <div class=" centrar contenedor-barra">
+                    <h3 class="centrar" style="font-weight: bold; margin-left: 5%; margin-right: 1.5%">Qualification</h3>
+                    <div style="width: 200px;">
+                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" [style]="prueba">{{porcentaje}}%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contenedor-botones">
+                    <button class="btn btn-ligth btn-outline-dark">add to favorites</button>
+                    <button class="btn btn-ligth btn-outline-dark">add to custom list</button>
+                </div>
+            </div>
+        </div>
+        <div class="tamanio-full-ancho centrar">
+            <div style="display: flex;">
+                <div>
+                    <div><img [src]="photo" class="contenedor-img" width="30px" height="30px" alt="" ></div>
+                </div>
+                <div>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 75px; width: 500px;"></textarea>
+                        <label for="floatingTextarea2">Comments</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-calificacion">
+            <div>
+                <h3 class="title">Qualification</h3>
+            </div>
+            <div>
+                <button class="btn btn-ligth btn-outline-dark">add comment</button>
+            </div>
+        </div>
+    </div>
+</div>

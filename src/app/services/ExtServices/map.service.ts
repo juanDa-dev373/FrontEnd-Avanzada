@@ -22,8 +22,8 @@ export class MapService {
       this.mapa = new mapboxgl.Map({
         container: 'map',
         style: this.style,
-        center: [-72.309, 4.473],
-        zoom: 4.5
+        center: [ -75.68111, 4.53389],
+        zoom: 12
       });
       this.mapa.addControl(new mapboxgl.NavigationControl());
       this.mapa.addControl(
