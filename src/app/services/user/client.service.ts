@@ -2,9 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenServicesService } from '../ExtServices/token-services.service';
-import { enviroments } from '../../../enviroments/enviroments';
 import { MensajeDTO } from '../../dto/mensajeDTO';
-import { AddBusinessDTO } from '../../dto/AddBusinessDTO';
 import { BusinessToListDTO } from '../../dto/BusinessToListDTO';
 import { CalificationDTO } from '../../dto/CalificationDTO';
 import { CreateCommentDTO } from '../../dto/CreateCommentDTO';
@@ -16,10 +14,10 @@ import { GetEventDTO } from '../../dto/GetEventDTO';
 import { LocationDTO } from '../../dto/LocationDTO';
 import { ResponseCommentDTO } from '../../dto/ResponseCommentDTO';
 import { UpdateBusinessDTO } from '../../dto/UpdateBusinessDTO';
-import { TypeBusiness } from '../../model/typeBusiness';
+import { TypeBusiness } from '../../model/TypeBusiness';
 import { UpdateEventDTO } from '../../dto/UpdateEventDTO';
-import { addBusiness } from '../../dto/addBusinessDTO';
 import { enviroments } from '../../../enviroments/enviroments';
+import { AddBusinessDTO} from '../../dto/AddBusinessDTO';
 
 @Injectable({
     providedIn: 'root'
@@ -30,53 +28,46 @@ export class ClientService {
 
     constructor(private http: HttpClient, private local: TokenServicesService) { }
 
-    public getClientById() {
+    public getClientById() :Observable<MensajeDTO>{
         return this.http.get<MensajeDTO>(enviroments.urlApi +'/api/clients/');
     }
-    public getListBusiness(nameList: string) {
+    public getListBusiness(nameList: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusiness`, { params: { nameList } });
     }
 
-    public getListsBusinesses() {
+    public getListsBusinesses():Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listsBusinesses`);
     }
 
-    public createBusinessList(listName: string) {
+    public createBusinessList(listName: string):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/createBusinessList`, null, { params: { listName } });
     }
 
-    public deleteBusinessList(listName: string) {
+    public deleteBusinessList(listName: string):Observable<MensajeDTO> {
         return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessList`, { params: { listName } });
     }
 
-    public addBusinessToList(addBusiness: BusinessToListDTO) {
+    public addBusinessToList(addBusiness: BusinessToListDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/addBusinessToList`, addBusiness);
     }
 
-  public deleteBusinessToList():Observable<MensajeDTO>{
-      return this.http.delete<MensajeDTO>('');
-  }
-  
-  public addBusiness(addBusiness:addBusiness):Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>(enviroments.urlApi+'/clients/addBusinessClient' ,addBusiness);
-  }
-    public deleteBusinessToList(removeBusiness: BusinessToListDTO) {
+    public deleteBusinessToList(removeBusiness: BusinessToListDTO):Observable<MensajeDTO> {
         return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessToList`, { body: removeBusiness });
     }
 
-    public addBusiness(addBusinessDTO: AddBusinessDTO) {
+    public addBusiness(addBusinessDTO: AddBusinessDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/addBusinessClient`, addBusinessDTO);
     }
 
-    public deleteBusiness(deleteBusinessDTO: DeleteBusinessDTO) {
+    public deleteBusiness(deleteBusinessDTO: DeleteBusinessDTO):Observable<MensajeDTO> {
         return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteBusinessClient`, { body: deleteBusinessDTO });
     }
 
-    public updateBusiness(updateBusinessDTO: UpdateBusinessDTO) {
+    public updateBusiness(updateBusinessDTO: UpdateBusinessDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/updateBusiness`, updateBusinessDTO);
     }
 
-    public getAllBusiness() {
+    public getAllBusiness():Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getAllBusiness`);
     }
 
@@ -84,55 +75,55 @@ export class ClientService {
         // return this.http.get<MensajeDTO<Business[]>>(`${this.apiUrl}/api/clients/listBusinessLocation`, { params: locationDTO });
     }
 
-    public listBusinessName(name: string) {
+    public listBusinessName(name: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessName/${name}`);
     }
 
-    public listBusinessType(type: TypeBusiness) {
+    public listBusinessType(type: TypeBusiness):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessType/${type}`);
     }
 
-    public listBusinessOwner() {
+    public listBusinessOwner():Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessOwner`);
     }
 
-    public getBusiness(idBusiness: string) {
+    public getBusiness(idBusiness: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getBusiness/${idBusiness}`);
     }
 
-    public createComment(createCommentDTO: CreateCommentDTO) {
+    public createComment(createCommentDTO: CreateCommentDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/createComment`, createCommentDTO);
     }
 
-    public responseComment(responseCommentDTO: ResponseCommentDTO) {
+    public responseComment(responseCommentDTO: ResponseCommentDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/responseComment`, responseCommentDTO);
     }
 
-    public listComment(idBusiness: string) {
+    public listComment(idBusiness: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/${idBusiness}/listComment`);
     }
 
-    public calification(calificationDTO: CalificationDTO) {
+    public calification(calificationDTO: CalificationDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/calification`, calificationDTO);
     }
 
-    public getComment(idComment: string, idBusiness: string) {
+    public getComment(idComment: string, idBusiness: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getComment`, { params: { idComment, idBusiness } });
     }
 
-    public deleteComment(deleteCommentDTO: DeleteCommentDTO) {
+    public deleteComment(deleteCommentDTO: DeleteCommentDTO):Observable<MensajeDTO> {
         return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteComment`, { body: deleteCommentDTO });
     }
 
-    public createEvent(eventDTO: EventDTO) {
+    public createEvent(eventDTO: EventDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/createEvent`, eventDTO);
     }
 
-    public listEventBusiness(idBusiness: string) {
+    public listEventBusiness(idBusiness: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/${idBusiness}/listEventBusiness`);
     }
 
-    public updateEvent(updateEventDTO: UpdateEventDTO) {
+    public updateEvent(updateEventDTO: UpdateEventDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/updateEvent`, updateEventDTO);
     }
 
@@ -140,11 +131,11 @@ export class ClientService {
         // return this.http.get<MensajeDTO<Event>>(`${this.apiUrl}/api/clients/getEvent`, { body: getEventDTO });
     }
 
-    public deleteEvent(deleteEventDTO: DeleteEventDTO) {
+    public deleteEvent(deleteEventDTO: DeleteEventDTO):Observable<MensajeDTO> {
         return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteEvent`, { body: deleteEventDTO });
     }
 
-    public logOutUser() {
+    public logOutUser():Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/logOutUser`, null);
     }
 }

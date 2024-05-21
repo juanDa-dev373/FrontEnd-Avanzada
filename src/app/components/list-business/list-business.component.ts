@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CarouselComponent } from '../../components/carousel/carousel.component';
-import { business } from '../../model/business';
+import { Business } from '../../model/Business';
 import { ClientService } from '../../services/user/client.service';
 import { Router, RouterModule} from '@angular/router';
 @Component({
@@ -13,7 +13,7 @@ import { Router, RouterModule} from '@angular/router';
 })
 export class ListBusinessComponent implements OnInit{
   id:string='';
-  negocios:business[]= [];
+  negocios:Business[]= [];
   carouselIds: string[] = [];
   
   constructor(private clientService:ClientService, private routes:Router) {

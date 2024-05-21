@@ -1,24 +1,24 @@
-import { locationDTO } from "../dto/LocationDTO";
-import { historyReview } from "./historyReview";
-import { schedule } from "./schedule";
-import { stateBusiness } from "./stateBusiness";
-import { stateRecord } from "./stateRecord";
-import { typeBusiness } from "./typeBusiness";
+import { Location } from "./Location";
+import { HistoryReview } from "./HistoryReview";
+import { Schedule } from "./Schedule";
+import { StateBusiness } from "./StateBusiness";
+import { StateRecord } from "./StateRecord";
+import { TypeBusiness } from "./TypeBusiness";
 
-export class business{
+export class Business{
     constructor(
         public id:string='',
         public name:string='',
         public description:string='',
         public idClient:string='',
-        public location:locationDTO,
+        public location:Location,
         public images:string[]=[],
-        public typeBusiness:typeBusiness,
-        public timeSchedules:schedule[]=[],
+        public typeBusiness:TypeBusiness,
+        public timeSchedules:Schedule[]=[],
         public phone:string[]=[],
-        public review:historyReview,
-        public stateBusiness:stateBusiness,
-        public state:stateRecord,
+        public review:HistoryReview,
+        public stateBusiness:StateBusiness,
+        public state:StateRecord,
         public open:boolean=false
     ){}
 }

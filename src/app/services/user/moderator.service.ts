@@ -14,27 +14,27 @@ export class ModeratorService {
 
     constructor(private http: HttpClient) { }
 
-    public verifyAndApproveBusiness(reviewDTO: HistoryReviewDTO) {
+    public verifyAndApproveBusiness(reviewDTO: HistoryReviewDTO):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/moderator/verifyAndApproveBusiness`, reviewDTO);
     }
 
-    public rejectBusiness(reviewDTO: HistoryReviewDTO) {
+    public rejectBusiness(reviewDTO: HistoryReviewDTO) :Observable<MensajeDTO>{
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/moderator/rejectBusiness`, reviewDTO);
     }
 
-    public deactivateUserAccount(moderatorId: string, userId: string) {
+    public deactivateUserAccount(moderatorId: string, userId: string):Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/moderator/deactivateUserAccount`, null, { params: { moderatorId, userId } });
     }
 
-    public getListHistoryReviews(moderatorId: string) {
+    public getListHistoryReviews(moderatorId: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/moderator/getListHistoryReviews`, { params: { moderatorId } });
     }
 
-    public getAllBusinessPending() {
+    public getAllBusinessPending():Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/moderator/getAllBusinessPending`);
     }
 
-    public logOutUser() {
+    public logOutUser():Observable<MensajeDTO> {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/moderator/logOutUser`, null);
     }
   }

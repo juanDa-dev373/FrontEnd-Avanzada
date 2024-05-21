@@ -4,7 +4,7 @@ import { MapService } from '../../services/ExtServices/map.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '../../services/user/client.service';
-import { businessDTO } from '../../dto/businessDTO';
+import { BusinessDTO } from '../../dto/BusinessDTO';
 
 @Component({
   selector: 'app-business-datail',

@@ -1,6 +1,6 @@
 import { Location } from '../model/Location';
-import { TypeBusiness } from '../model/typeBusiness';
-import { Schedule } from '../model/Schedule';
+import { TypeBusiness } from '../model/TypeBusiness';
+import { Schedule } from '../model/Schedule'
 import { HistoryReview } from '../model/HistoryReview';
 
 export class UpdateBusinessDTO {
