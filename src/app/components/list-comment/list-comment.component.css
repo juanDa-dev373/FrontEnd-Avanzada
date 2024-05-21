@@ -1,0 +1,21 @@
+.tamanio-full-ancho{
+    margin-top:1%;
+    width: 100%;
+    display: flex;
+    padding: 0 2% 2% 2%;
+}
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.contenedor-calificacion{
+    display: flex;
+    justify-content: space-between;
+}

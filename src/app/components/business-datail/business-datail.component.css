@@ -63,3 +63,15 @@
     display: flex;
     padding: 0 2% 2% 2%;
 }
+.lista-forma{
+    margin: 7px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    font-weight: bold;
+    width: 80%;
+}
+.lista-forma:hover{
+    background-color: black;
+    color: white;
+}

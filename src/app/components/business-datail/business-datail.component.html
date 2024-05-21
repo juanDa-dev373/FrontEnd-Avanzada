@@ -55,18 +55,32 @@
                 </div>
                 <div>
                     <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 75px; width: 500px;"></textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 75px; width: 500px;" [(ngModel)]="commentMessage" [ngClass]="{' is-invalid':verifyCommentMessage}"></textarea>
                         <label for="floatingTextarea2">Comments</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="contenedor-calificacion">
-            <div>
-                <h3 class="title">Qualification</h3>
+            <div class="contenedor-calificacion">
             </div>
             <div>
-                <button class="btn btn-ligth btn-outline-dark">add comment</button>
+                <button class="btn btn-ligth btn-outline-dark" (click)="addComment()">add comment</button>
+            </div>
+        </div>
+        <div style="margin-bottom: 10%;">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                view Comments
+            </button>
+            <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <app-list-comment></app-list-comment>
+                    @if(commentList.length == 0){
+                        <li class="lista-forma">{{errorComentList}}</li>
+                    }@else {
+                        <!--<app-list-comment></app-list-comment>-->
+                    }
+                </ul>
             </div>
         </div>
     </div>

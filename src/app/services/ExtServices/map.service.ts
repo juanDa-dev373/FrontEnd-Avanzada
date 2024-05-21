@@ -47,7 +47,7 @@ export class MapService {
         });
       });
     }
-    public pintarMarcadores(business: Business[]) {
+    public pintarMarcadores(business:any[]) {
       business.forEach(business => {
         new mapboxgl.Marker()
         .setLngLat([business.location.longitude, business.location.latitude])
