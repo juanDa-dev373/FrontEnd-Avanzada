@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { MapService } from '../../services/ExtServices/map.service';
 import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { schedule } from '../../model/schedule';
-import { locationDTO } from '../../dto/LocationDTO';
+import { Schedule } from '../../model/Schedule';
+import { Location } from '../../model/Location';
 import { ImageService } from '../../services/user/image.service';
 import { RouterModule } from '@angular/router';
-import { addBusiness } from '../../dto/addBusinessDTO';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
 import { ClientService } from '../../services/user/client.service';
 import { PopupService } from '../../services/ExtServices/popup.service';
+import { AddBusinessDTO } from '../../dto/AddBusinessDTO';
 
 @Component({
   selector: 'app-create-business',
@@ -35,8 +35,8 @@ export class CreateBusinessComponent implements OnInit {
   message:string ='';
   disableScheduleAdd:boolean=false;
   days:string[]=['lunes','martes','miercoles','jueves', 'viernes','sabado','domingo'];
-  scheduleList:schedule[]=[{start:'',day:this.days[0],end:''}];
-  ubication:locationDTO={latitude:0,longitude:0};
+  scheduleList:Schedule[]=[{start:'',day:this.days[0],end:''}];
+  ubication:Location= {latitude:0,longitude:0};
   cloudinary?:any;
   isLoading = false;
   images: string[] = [];
@@ -134,7 +134,7 @@ export class CreateBusinessComponent implements OnInit {
     });
   }
   addBusiness(){
-    var add = new addBusiness(this.name, this.description,this.token.getCodigo(), this.ubication, this.images,this.typeBusiness, this.scheduleList, this.numArray);
+    var add = new AddBusinessDTO(this.name, this.description,this.token.getCodigo(), this.ubication, this.images,this.typeBusiness, this.scheduleList, this.numArray);
     if(add.name==''){
       this.nameAlert=true;
     }else{

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { Observable } from 'rxjs';
-import { businessDTO } from '../../dto/businessDTO';
 import { enviroments } from '../../../enviroments/enviroments';
-import { business } from '../../model/business';
+import { Business } from '../../model/Business';
 
 
 @Injectable({
@@ -48,7 +47,7 @@ export class MapService {
         });
       });
     }
-    public pintarMarcadores(business: business[]) {
+    public pintarMarcadores(business: Business[]) {
       business.forEach(business => {
         new mapboxgl.Marker()
         .setLngLat([business.location.longitude, business.location.latitude])

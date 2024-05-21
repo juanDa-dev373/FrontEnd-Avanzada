@@ -1,3 +1,3 @@
-export enum stateBusiness{
+export enum StateBusiness{
     APPROVED, REJECTED, PENDING
 }

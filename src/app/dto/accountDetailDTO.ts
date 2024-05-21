@@ -1,11 +1,11 @@
-import { stateRecord } from "../model/stateRecord";
+import { StateRecord } from "../model/StateRecord";
 
-export class accountDetailDTO{
+export class AccountDetailDTO{
     constructor(
        public id:string,
        public name:string,
        public nickname:string,
        public email:string,
-       public login:stateRecord
+       public login:StateRecord
     ){}
 }

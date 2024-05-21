@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '
 import mapboxgl from 'mapbox-gl';
 import { enviroments } from '../../../enviroments/enviroments';
 import { MapService } from '../../services/ExtServices/map.service';
-import { business } from '../../model/business';
+import { Business } from '../../model/Business';
 import { ClientService } from '../../services/user/client.service';
 
 
@@ -14,7 +14,7 @@ import { ClientService } from '../../services/user/client.service';
   styleUrl: './map.component.css'
 })
 export class MapComponent implements OnInit{
-  business:business[]=[];
+  business:Business[]=[];
   constructor(private map:MapService, private clientService:ClientService){}
   ngOnInit(): void {
     this.map.crearMapa();

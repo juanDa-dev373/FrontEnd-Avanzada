@@ -1,15 +1,15 @@
-import { schedule } from "../model/schedule";
-import { locationDTO } from "./LocationDTO";
+import { Schedule } from "../model/Schedule";
+import { Location } from "../model/Location";
 
-export class addBusiness{
+export class AddBusinessDTO{
     constructor(
         public name:string='',
         public description:string='',
         public idClient:string='',
-        public location:locationDTO,
+        public location:Location,
         public images:string[]=[],
         public typeBusiness:string='',
-        public timeSchedules:schedule[]=[],
+        public timeSchedules:Schedule[]=[],
         public phone:string[]=[]
     ){}
 }

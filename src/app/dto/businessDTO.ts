@@ -1,11 +1,11 @@
-import { locationDTO } from "./LocationDTO";
+import { Location } from "../model/Location";
 
-export class businessDTO{
+export class BusinessDTO{
     constructor(
         public id:string='',
         public name:string='',
         public description:string='',
-        public location:locationDTO,
+        public location:Location,
         public images:string[],
         public typeBusiness:string='',
         public open:boolean

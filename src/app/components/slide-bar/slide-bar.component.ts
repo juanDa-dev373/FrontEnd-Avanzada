@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { business } from '../../model/business';
+import { Business } from '../../model/Business';
 import { ClientService } from '../../services/user/client.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
+
 import { CommonModule } from '@angular/common';
+
 import { ModalService } from '../../services/ExtServices/modal.service';
+
+
+
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 @Component({
@@ -15,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './slide-bar.component.css'
 })
 export class SlideBarComponent implements OnInit{
-  business:business[]=[];
+  business:Business[]=[];
+  listbusines: any[]=[]
   constructor(private clientService:ClientService, private local:TokenServicesService, private modal:ModalService){}
   ngOnInit(): void {
         this.clientService.listBusinessOwner().subscribe({
@@ -38,6 +44,12 @@ export class SlideBarComponent implements OnInit{
       return false;
     }
     openCreateList(){
-      this.modal.openCreateList();
+      this.modal.openCreateList(this.listbusines);
     }
+    openChooseList(){
+      this.modal.openChooseList();
+    }
+    // openCreateEvent(){
+    //   this.modal.createEvent();
+    // }
 }
