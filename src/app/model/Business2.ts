@@ -3,7 +3,7 @@ import { HistoryReview } from "./HistoryReview";
 import { Schedule } from "./Schedule";
 import { StateBusiness } from "./StateBusiness";
 import { StateRecord } from "./StateRecord";
-import { TypeBusiness } from "./typeBusiness";
+import { TypeBusiness } from "./TypeBusiness";
 
 export class Business{
     constructor(
@@ -19,6 +19,6 @@ export class Business{
         public review:HistoryReview,
         public stateBusiness:StateBusiness,
         public state:StateRecord,
-        public open:boolean
+        public open:boolean=false
     ){}
 }
