@@ -128,7 +128,7 @@ export class CreateBusinessComponent implements OnInit {
           this.isLoading=false;
       },
       error:(error)=>{
-        console.log(error.respuesta.error);
+        console.log(error.error.respuesta);
         this.isLoading=false;
       }
     });

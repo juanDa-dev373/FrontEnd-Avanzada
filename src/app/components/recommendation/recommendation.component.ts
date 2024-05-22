@@ -34,6 +34,7 @@ export class RecommendationComponent {
     this.clientService.getAllBusiness().subscribe({
       next: (data) => {
         if (data && data.respuesta && Array.isArray(data.respuesta)) {
+          this.carouselIds = data.respuesta.map(negocio => 'carousel-' + negocio.id);
           this.businesses=data.respuesta;
         } else {
           console.error('La respuesta del servidor no tiene el formato esperado:', data);
