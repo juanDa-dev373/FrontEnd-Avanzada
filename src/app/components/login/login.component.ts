@@ -16,51 +16,56 @@ import { AuthService } from '../../services/user/auth.service';
 })
 
 export class LoginComponent {
-  invalidmail:string="form-control";
-  invalidpass:string="form-control";
-  Login:loginDTO;
-  constructor(private loginService:AuthService, private routes:Router, private local:TokenServicesService){
+  invalidmail: string = "form-control";
+  invalidpass: string = "form-control";
+  Login: loginDTO;
+  constructor(private loginService: AuthService, private routes: Router, private local: TokenServicesService) {
     this.Login = new loginDTO();
   }
-  errorMessage:string='';
-  token:string='';
-  VerifyPass(event:any){
+  errorMessage: string = '';
+  token: string = '';
+  VerifyPass(event: any) {
     this.invalidpass = "form-control ";
   }
-  
-  VerifyMail(event:any){
+
+  VerifyMail(event: any) {
     this.invalidmail = "form-control ";
   }
-  login(){
-    if(this.Login.email == '' ){
-      this.invalidmail=this.invalidmail+" is-invalid";
+  login() {
+    if (this.Login.email == '') {
+      this.invalidmail = this.invalidmail + " is-invalid";
     }
-    if(this.Login.password == ''){
-      this.invalidpass=this.invalidpass+" is-invalid";
+    if (this.Login.password == '') {
+      this.invalidpass = this.invalidpass + " is-invalid";
     }
-    if(this.Login.password != '' && this.Login.email != '' ){
+    if (this.Login.password != '' && this.Login.email != '') {
       //this.modal.open();
       this.loginService.getToken(this.Login).subscribe({
-        next: (data:any) => {
+        next: (data: any) => {
           this.local.setToken(data.respuesta.token);
-          this.routes.navigate(['/home/list-business']);
-        }, 
-        error: (err:any) => {
-          let mensaje="";
-          for (let e of err.error.respuesta) {
-            mensaje+="Campo: "+ e.campo+"  Error: " +e.error+"\n";
-  
+          this.routes.navigate(['/home/recommendation']);
+        },
+        error: (err: any) => {
+          let mensaje = "";
+          if (Array.isArray(err.error.respuesta)) {
+            for (let e of err.error.respuesta) {
+              mensaje += "Campo: " + e.campo + "  Error: " + e.error + "\n";
+
+            }
+          }else{
+            mensaje = err.error.respuesta;
           }
-           alert(mensaje);
+          
+          alert(mensaje);
         }
 
-      });  
+      });
     }
-    
+
   }
 
-  public buscarNumero(lista:number[], numero:number ):boolean{
-      
+  public buscarNumero(lista: number[], numero: number): boolean {
+
     return false;
   }
 }

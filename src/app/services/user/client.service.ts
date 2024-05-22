@@ -72,7 +72,7 @@ export class ClientService {
     }
 
     public listBusinessLocation(locationDTO: LocationDTO) {
-        return this.http.request<MensajeDTO>('get',`${this.apiUrl}/api/clients/listBusinessLocation`, { body: locationDTO });
+        return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessLocation`, locationDTO);
     }
 
     public listBusinessName(name: string):Observable<MensajeDTO> {

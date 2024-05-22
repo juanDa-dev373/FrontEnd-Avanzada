@@ -8,7 +8,7 @@ export class DataService {
   constructor() { }
 
   private data: any[]=[];
-  public inicio:boolean=true;
+  private message: string="";
 
   setBusinesses(data: any[]) {
     this.data = data;
@@ -16,6 +16,14 @@ export class DataService {
 
   getBusinesses() {
     return this.data;
+  }
+
+  setMessage(message:string){
+    this.message=message;
+  }
+
+  getMessage(){
+    return this.message;
   }
 
 }

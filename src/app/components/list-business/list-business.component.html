@@ -15,4 +15,7 @@
             </div>
         </div>
     </div>
+    <ng-container *ngIf="isEmpty();">
+        <h1>{{data.getMessage()}}</h1>
+    </ng-container>
 </div>

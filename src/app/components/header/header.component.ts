@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgZone } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PopupService } from '../../services/ExtServices/popup.service';
 import { ModalService } from '../../services/ExtServices/modal.service';
-import { AccountDetailDTO } from '../../dto/AccountDetailDTO';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/ExtServices/data.service';
 import { ClientService } from '../../services/user/client.service';
+import { Location } from '../../model/Location';
+import { LocationDTO } from '../../dto/LocationDTO';
 
 @Component({
   selector: 'app-header',
@@ -18,13 +19,14 @@ import { ClientService } from '../../services/user/client.service';
 })
 export class HeaderComponent {
   constructor(private popup: PopupService, private modal: ModalService, private token: TokenServicesService,
-    private routes: Router, private data: DataService, private clientService: ClientService
+    private routes: Router, private data: DataService, private clientService: ClientService, private ngZone:NgZone
   ) {
   }
-  filtro: string = "";
+  filtro: string = "name";
   search: string = "";
   photo = this.token.getPhoto();
   nickname = this.token.getNickName();
+  locationDTO = new LocationDTO();
 
   selectFiltro(filtro: string) {
     this.filtro = filtro;
@@ -46,12 +48,13 @@ export class HeaderComponent {
           next: (data) => {
             if (data && data.respuesta && Array.isArray(data.respuesta)) {
               this.data.setBusinesses(data.respuesta);
+              this.search="";
               this.routes.navigate(['/home/list-business']);
             } 
           },
           error: (error1) => {
-            console.error('La respuesta del servidor no tiene el formato esperado:',error1.error.respuesta);
-            this.data.setBusinesses([])
+            this.data.setMessage(error1.error.respuesta);
+            this.data.setBusinesses([]);
             this.routes.navigate(['/home/list-business']);
           }
         });
@@ -60,35 +63,71 @@ export class HeaderComponent {
           next: (data) => {
             if (data && data.respuesta && Array.isArray(data.respuesta)) {
               this.data.setBusinesses(data.respuesta);
+              this.search="";
               this.routes.navigate(['/home/list-business']);
-            } else {
-              console.error('La respuesta del servidor no tiene el formato esperado:', data);
             }
           },
           error: (error1) => {
-            console.error('La respuesta del servidor no tiene el formato esperado:',error1.error.respuesta);
-            this.data.setBusinesses([])
+            this.data.setMessage(error1.error.respuesta);
+            this.data.setBusinesses([]);
             this.routes.navigate(['/home/list-business']);
+
           }
         });
       } else if (this.filtro == "location") {
-        // this.clientService.listBusinessLocation(this.search).subscribe({
-        //   next: (data) => {
-        //     if (data && data.respuesta && Array.isArray(data.respuesta)) {
-        //       this.data.setData(data.respuesta);
-        //     } else {
-        //       console.error('La respuesta del servidor no tiene el formato esperado:', data);
-        //     }
-        //   },
-        //   error: (err) => {
-        //     console.log(err.error.respuesta);
-        //   }
-        // });
+        this.getUserLocation();
+        this.locationDTO.search=this.search;
+        console.log(this.locationDTO)
+        
+        this.clientService.listBusinessLocation(this.locationDTO).subscribe({
+          next: (data) => {
+            if (data && data.respuesta && Array.isArray(data.respuesta)) {
+              this.data.setBusinesses(data.respuesta);
+              this.search="";
+              
+            }
+          },
+          error: (err) => {
+            this.data.setMessage(err.error.respuesta);
+            this.data.setBusinesses([]);
+            this.routes.navigate(['/home/list-business']);
+          }
+        });
 
       } else {
         this.data.setBusinesses([])
       }
       
+    }
+  }
+
+  getUserLocation(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.ngZone.run(() => {
+            this.locationDTO.location.latitude = position.coords.latitude;
+            this.locationDTO.location.longitude = position.coords.longitude;
+          });
+        },
+        (error) => {
+          this.ngZone.run(() => {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                console.log( "User denied the request for Geolocation.");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                console.log("Location information is unavailable.");
+                break;
+              case error.TIMEOUT:
+                console.log("The request to get user location timed out.");
+                break;
+            }
+          });
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
     }
   }
 }

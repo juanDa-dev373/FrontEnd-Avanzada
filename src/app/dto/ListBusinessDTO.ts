@@ -1,4 +1,4 @@
-import { BusinessDTO } from './businessDTO'; // Importar según la ubicación de BusinessDto
+import { BusinessDTO } from './BusinessDTO'; // Importar según la ubicación de BusinessDto
 
 export class ListBusinessDTO {
     constructor(
