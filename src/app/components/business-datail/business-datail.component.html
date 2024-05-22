@@ -48,40 +48,43 @@
                 </div>
             </div>
         </div>
-        <div class="tamanio-full-ancho centrar">
-            <div style="display: flex;">
-                <div>
-                    <div><img [src]="photo" class="contenedor-img" width="30px" height="30px" alt="" ></div>
-                </div>
-                <div>
-                    <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 75px; width: 500px;" [(ngModel)]="commentMessage" [ngClass]="{' is-invalid':verifyCommentMessage}"></textarea>
-                        <label for="floatingTextarea2">Comments</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="contenedor-calificacion">
-            <div class="contenedor-calificacion">
+    </div>
+</div>
+<div>
+    <div class="tamanio-full-ancho centrar">
+        <div style="display: flex;">
+            <div>
+                <div><img [src]="photo" class="contenedor-img" width="30px" height="30px" alt="" ></div>
             </div>
             <div>
-                <button class="btn btn-ligth btn-outline-dark" (click)="addComment()">add comment</button>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 75px; width: 500px;" [(ngModel)]="commentMessage" [ngClass]="{' is-invalid':verifyCommentMessage}"></textarea>
+                    <label for="floatingTextarea2">Comments</label>
+                </div>
             </div>
         </div>
-        <div style="margin-bottom: 10%;">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                view Comments
-            </button>
-            <div class="collapse show" id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <app-list-comment></app-list-comment>
-                    @if(commentList.length == 0){
-                        <li class="lista-forma">{{errorComentList}}</li>
-                    }@else {
-                        <!--<app-list-comment></app-list-comment>-->
+    </div>
+    <div class="contenedor-calificacion">
+        <div class="contenedor-calificacion">
+        </div>
+        <div>
+            <button class="btn btn-ligth btn-outline-dark" (click)="addComment()">add comment</button>
+        </div>
+    </div>
+    <div style="margin-bottom: 10%;">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            view Comments
+        </button>
+        <div class="collapse show" id="home-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                @if(commentList.length == 0){
+                    <li class="lista-forma">{{errorComentList}}</li>
+                }@else {
+                    @for (item of commentList; track $index) {
+                        <app-list-comment [comment]="item"></app-list-comment>
                     }
-                </ul>
-            </div>
+                }
+            </ul>
         </div>
     </div>
 </div>

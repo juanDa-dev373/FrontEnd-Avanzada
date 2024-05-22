@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import { Observable } from 'rxjs';
 import { enviroments } from '../../../enviroments/enviroments';
 import { Business } from '../../model/Business';
+import { CarouselComponent } from '../../components/carousel/carousel.component';
 
 
 @Injectable({
@@ -50,8 +51,33 @@ export class MapService {
     public pintarMarcadores(business:any[]) {
       business.forEach(business => {
         new mapboxgl.Marker()
-        .setLngLat([business.location.longitude, business.location.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(business.name))
+        .setLngLat([business.location.latitude, business.location.longituded])
+        .setPopup(new mapboxgl.Popup().setHTML(`
+          <div>
+            <div style="display:flex; justify-content: center; align-items: center;">${business.name}</div>
+            <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                ${business.images.map((_:any, index:any) => `
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : ''}" aria-label="Slide ${index + 1}"></button>
+              `).join('')}
+            </div>
+            <div class="carousel-inner">
+              ${business.images.map((image:any, index:any) => `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                  <img src="${image}" class="d-block w-100" alt="...">
+                </div>
+              `).join('')}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+      `))
         .addTo(this.mapa);
       });
     }

@@ -14,26 +14,19 @@ import { ClientService } from '../../services/user/client.service';
   styleUrl: './map.component.css'
 })
 export class MapComponent implements OnInit{
-  business:Business[]=[];
+  business:any[]=[];
   constructor(private map:MapService, private clientService:ClientService){}
   ngOnInit(): void {
     this.map.crearMapa();
-    this.map.agregarMarcador().subscribe((marcador)=>{
-      console.log(marcador.lat +"-"+ marcador.lng);
-    });
     this.clientService.getAllBusiness().subscribe({
       next:(data)=>{
-        if (data && data.respuesta && Array.isArray(data.respuesta)) {
-          this.business = data.respuesta;
-        } else {
-          console.error('La respuesta del servidor no tiene el formato esperado:', data);
-        }
+        this.business=data.respuesta;
+        this.map.pintarMarcadores(this.business);
       },
       error:(error1)=>{
         console.log(error1);
       }
     });
-    this.map.pintarMarcadores(this.business);
   }
  
 }

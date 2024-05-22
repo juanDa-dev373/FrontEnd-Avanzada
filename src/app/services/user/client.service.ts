@@ -28,8 +28,8 @@ export class ClientService {
 
     constructor(private http: HttpClient, private local: TokenServicesService) { }
 
-    public getClientById() :Observable<MensajeDTO>{
-        return this.http.get<MensajeDTO>(enviroments.urlApi +'/api/clients/');
+    public getClientById(idClient:string) :Observable<MensajeDTO>{
+        return this.http.get<MensajeDTO>(this.apiUrl +'/api/clients/getClientId/'+idClient);
     }
     public getListBusiness(nameList: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusiness`, { params: { nameList } });
@@ -128,7 +128,7 @@ export class ClientService {
     }
 
     public getEvent(getEventDTO: GetEventDTO) {
-        // return this.http.get<MensajeDTO<Event>>(`${this.apiUrl}/api/clients/getEvent`, { body: getEventDTO });
+        return this.http.request<MensajeDTO>('get',`${this.apiUrl}/api/clients/getEvent`,{body:getEventDTO});
     }
 
     public deleteEvent(deleteEventDTO: DeleteEventDTO):Observable<MensajeDTO> {
