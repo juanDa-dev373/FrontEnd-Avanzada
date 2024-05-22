@@ -72,14 +72,14 @@ export class ClientService {
     }
 
     public listBusinessLocation(locationDTO: LocationDTO) {
-        // return this.http.get<MensajeDTO<Business[]>>(`${this.apiUrl}/api/clients/listBusinessLocation`, { params: locationDTO });
+        return this.http.request<MensajeDTO>('get',`${this.apiUrl}/api/clients/listBusinessLocation`, { body: locationDTO });
     }
 
     public listBusinessName(name: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessName/${name}`);
     }
 
-    public listBusinessType(type: TypeBusiness):Observable<MensajeDTO> {
+    public listBusinessType(type: string):Observable<MensajeDTO> {
         return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/listBusinessType/${type}`);
     }
 

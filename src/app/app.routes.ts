@@ -27,7 +27,7 @@ export const routes: Routes = [
             {
                 path:'map', component:MapComponent
             },{
-                path:'list-business', component:ListBusinessComponent
+                path:'list-business' , component:ListBusinessComponent ,
             },{
                 path:'create-business', component:CreateBusinessComponent
             },{

@@ -16,6 +16,7 @@ import { AccountDetailDTO } from '../../dto/AccountDetailDTO';
 })
 export class HomeComponent implements OnInit{
   constructor(private clientService:ClientService, private routes:Router){}
+  filtro:string="";
   ngOnInit(): void {}
   
 }
