@@ -127,7 +127,7 @@ export class ClientService {
         return this.http.post<MensajeDTO>(`${this.apiUrl}/api/clients/updateEvent`, updateEventDTO);
     }
 
-    public getEvent(getEventDTO: GetEventDTO) {
+    public getEvent(getEventDTO: GetEventDTO):Observable<MensajeDTO>{
         return this.http.request<MensajeDTO>('get',`${this.apiUrl}/api/clients/getEvent`,{body:getEventDTO});
     }
 
