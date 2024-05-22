@@ -45,7 +45,9 @@ export class BusinessDatailComponent implements OnInit{
           next:(data)=>{
             this.commentList=data.respuesta;
             for(let comen of this.commentList){
-              this.porcentaje+=(comen.rating/this.commentList.length)/5;
+              if(comen.rating !=-1){
+                this.porcentaje+=((comen.rating/this.commentList.length)/5)*100;
+              }
             }
             this.prueba+=this.porcentaje+'%';
           },
@@ -70,7 +72,7 @@ export class BusinessDatailComponent implements OnInit{
       this.clients.createComment(comment).subscribe({
         next:(data)=>{
           this.popup.openSnackBar(data.respuesta);
-          
+          window.location.reload();
         },
         error:(error)=>{
           console.log(error.error.respuesta);
