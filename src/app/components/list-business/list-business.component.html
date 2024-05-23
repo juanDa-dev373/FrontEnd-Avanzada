@@ -1,7 +1,7 @@
 <div class="center"><h2>Business</h2></div>
 <div class="my-container">
     <!-- Contenido del div duplicado -->
-    <div *ngFor="let index of negocios; let i =index" class="container2">
+    <div *ngFor="let index of data.getBusinesses(); let i =index" class="container2">
         <div class="card" >
             <app-carousel [id]="carouselIds[i]" [images]="index.images"></app-carousel>
             <div class="card-body" >
@@ -15,4 +15,7 @@
             </div>
         </div>
     </div>
+    <ng-container *ngIf="isEmpty();">
+        <h1>{{data.getMessage()}}</h1>
+    </ng-container>
 </div>

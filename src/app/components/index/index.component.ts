@@ -10,6 +10,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
-title: string = "Unilocal";
+title: string = "Unibusiness";
 
 }

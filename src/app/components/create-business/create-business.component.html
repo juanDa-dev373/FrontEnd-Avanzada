@@ -73,7 +73,12 @@
                     <div>
                         <div *ngFor="let shedule of scheduleList; let i = index">
                             <div class="contenedor-inputs">
-                                <div class="divs-contenedor"><input type="text" class="form-control" (change)="changeScheduleDay(i, day.value)" placeholder="day" [value]="days[i]" #day></div>
+                                <div class="divs-contenedor">
+                                    <select class="form-control" name="days" id="days"
+                                        (change)="changeScheduleDay(i, day.value)" [(ngModel)]="scheduleList[i].day" #day>
+                                        <option *ngFor="let day of days" [disabled]="daysSelecionado.includes(day)">{{ day }}</option>
+                                    </select>
+                                </div>
                                 <div class="divs-contenedor"><input type="text" class="form-control" (change)="changeScheduleStart(i, start.value)" placeholder="start" #start></div>
                                 <div class="divs-contenedor"><input type="text" class="form-control" (change)="changeSheduleEnd(i, end.value)" placeholder="end" #end></div>
                                 <div class="">

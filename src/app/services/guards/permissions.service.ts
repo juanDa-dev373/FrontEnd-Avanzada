@@ -10,7 +10,7 @@ export class PermissionsService {
   constructor(private tokenService:TokenServicesService, private router: Router) { }
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.tokenService.isLogged()) {
-      this.router.navigate([""]);
+      this.router.navigate(["index"]);
       return false;
     }
     return true;

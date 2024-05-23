@@ -5,7 +5,7 @@ import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
 import { loginDTO } from '../../dto/loginDTO';
 import { signUpDTO } from '../../dto/signUpDTO';
-import { ChangePasswordDTO } from '../../dto/changePasswordDTO';
+import { ChangePasswordDTO } from '../../dto/ChangePasswordDTO';
 
 @Injectable({
   providedIn: 'root'

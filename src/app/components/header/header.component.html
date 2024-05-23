@@ -2,9 +2,9 @@
     <div class="container-fluid d-grid  " style="grid-template-columns: 2.5fr 1.5fr; grid-column-gap: 20px;">
         <div class="d-flex align-items-center">
           <form class="w-100 me-3 search" role="search">
-            <input type="search" class=" form-control" placeholder="Search..." aria-label="Search">
-            <select name="" id="" class="form-select filter">
-              <option value="" selected disabled>Filter</option>
+            <input type="search" class=" form-control" placeholder="Search..." aria-label="Search" [(ngModel)]="search" (keyup.enter)="searchBusiness()" name="search">
+            <select name="" id="" class="form-select filter" (change)="selectFiltro(filtro.value)" #filtro>
+              <option value="name" selected disabled>Filter</option>
               <option value="type">Type</option>
               <option value="location">Location</option>
               <option value="name">Name</option>

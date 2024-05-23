@@ -41,7 +41,6 @@ export class BusinessDatailComponent implements OnInit{
     this.clients.getBusiness(this.idBusiness).subscribe({
       next:(data)=>{
         this.businessDetail=data.respuesta;
-        console.log(data.respuesta);
         this.array.push(data.respuesta);
         this.map.pintarMarcadores(this.array);
         this.clients.listComment(this.businessDetail.id).subscribe({
