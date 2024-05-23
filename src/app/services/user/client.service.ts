@@ -112,7 +112,7 @@ export class ClientService {
     }
 
     public deleteComment(deleteCommentDTO: DeleteCommentDTO):Observable<MensajeDTO> {
-        return this.http.delete<MensajeDTO>(`${this.apiUrl}/api/clients/deleteComment`, { body: deleteCommentDTO });
+        return this.http.request<MensajeDTO>('delete',`${this.apiUrl}/api/clients/deleteComment`, { body: deleteCommentDTO });
     }
 
     public createEvent(eventDTO: EventDTO):Observable<MensajeDTO> {

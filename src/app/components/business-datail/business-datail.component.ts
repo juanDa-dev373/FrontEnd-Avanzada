@@ -19,6 +19,7 @@ import { PopupService } from '../../services/ExtServices/popup.service';
 })
 export class BusinessDatailComponent implements OnInit{
   photo:string=this.token.getPhoto();
+  cod:string = this.token.getCodigo();
   prueba:string='width:'; 
   porcentaje:number=0;
   idBusiness:string='';
@@ -28,6 +29,7 @@ export class BusinessDatailComponent implements OnInit{
   qualification:number=0;
   verifyCommentMessage:boolean=false;
   commentList:any[]=[];
+  eventList:any[]=[];
   errorComentList:string='';
   constructor(private map:MapService, private token:TokenServicesService, private route:ActivatedRoute, private clients:ClientService, private popup:PopupService){
     this.route.params.subscribe(params=>{
@@ -39,6 +41,7 @@ export class BusinessDatailComponent implements OnInit{
     this.clients.getBusiness(this.idBusiness).subscribe({
       next:(data)=>{
         this.businessDetail=data.respuesta;
+        console.log(data.respuesta);
         this.array.push(data.respuesta);
         this.map.pintarMarcadores(this.array);
         this.clients.listComment(this.businessDetail.id).subscribe({
@@ -53,6 +56,15 @@ export class BusinessDatailComponent implements OnInit{
           },
           error:(error)=>{
             this.errorComentList=error.error.respuesta;
+          }
+        });
+        this.clients.listEventBusiness(this.businessDetail.id).subscribe({
+          next:(data)=>{
+            this.eventList=data.respuesta;
+            console.log(this.eventList);
+          },
+          error:(error)=>{
+            console.log(error.error.respuesta);
           }
         });
       },

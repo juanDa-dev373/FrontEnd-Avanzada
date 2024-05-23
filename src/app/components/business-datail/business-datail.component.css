@@ -2,12 +2,20 @@
     display: flex;
 }
 .contenedor-hijo-derecho{
-    width: 70%;
-    height: 100%;
+    width: 750px;
+    height: 600px;
+    overflow-y: auto;
+    padding: 10px;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
 }
 .contenedor-hijo-izquierdo{
-    width: 30%;
-    height: 100%;
+    width: 400px;
+    height: 600px;
+    overflow-y: auto;
+    padding: 10px;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
 }
 .caroucel-size{
     width: 90%;
@@ -74,4 +82,29 @@
 .lista-forma:hover{
     background-color: black;
     color: white;
+}
+.scroll-container {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #000;
+    overflow-y: auto; /* Esto permite que aparezca una barra de desplazamiento vertical cuando el contenido es demasiado grande */
+    overflow-x: hidden; /* Opcional: oculta la barra de desplazamiento horizontal si no es necesaria */
+    padding: 10px; /* Opcional: añade un poco de espacio interior */
+}
+
+/* Opcional: Estilos adicionales para la barra de desplazamiento */
+.scroll-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
