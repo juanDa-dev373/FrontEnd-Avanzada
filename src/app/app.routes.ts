@@ -12,10 +12,13 @@ import { RolesGuard } from './services/guards/roles.service';
 import { CreateBusinessComponent } from './components/create-business/create-business.component';
 import { BusinessDatailComponent } from './components/business-datail/business-datail.component';
 import { RecommendationComponent } from './components/recommendation/recommendation.component';
+import { IndexComponent } from './components/index/index.component';
 
 export const routes: Routes = [
     {
-        path:'', component:LoginComponent, canActivate:[LoginGuard]
+        path:'', component:IndexComponent, canActivate:[LoginGuard]
+    },{
+        path:'login', component:LoginComponent, canActivate:[LoginGuard]
     },{
         path:'signup', component:SignUpComponent, canActivate:[LoginGuard]
     },{
@@ -40,6 +43,8 @@ export const routes: Routes = [
     },
     {
         path:'change-password', component:ChangePasswordComponent
+    },{
+        path: "**", pathMatch: "full", redirectTo: "",canActivate:[LoginGuard]
     }
 
 ];
