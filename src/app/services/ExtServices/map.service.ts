@@ -51,7 +51,7 @@ export class MapService {
     public pintarMarcadores(business:any[]) {
       business.forEach(business => {
         new mapboxgl.Marker()
-        .setLngLat([business.location.latitude, business.location.longituded])
+        .setLngLat([business.location.latitude, business.location.longitude])
         .setPopup(new mapboxgl.Popup().setHTML(`
           <div>
             <div style="display:flex; justify-content: center; align-items: center;">${business.name}</div>
