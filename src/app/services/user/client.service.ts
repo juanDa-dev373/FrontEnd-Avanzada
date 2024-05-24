@@ -128,7 +128,12 @@ export class ClientService {
     }
 
     public getEvent(getEventDTO: GetEventDTO):Observable<MensajeDTO>{
-        return this.http.request<MensajeDTO>('get',`${this.apiUrl}/api/clients/getEvent`,{body:getEventDTO});
+        const params={
+            id:getEventDTO.id,
+            idBusiness:getEventDTO.idBusiness,
+            idClient:getEventDTO.idClient
+        }
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/clients/getEvent`,{params:params});
     }
 
     public deleteEvent(deleteEventDTO: DeleteEventDTO):Observable<MensajeDTO> {

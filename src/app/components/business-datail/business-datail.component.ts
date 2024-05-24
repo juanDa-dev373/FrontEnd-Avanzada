@@ -9,11 +9,14 @@ import { CreateCommentDTO } from '../../dto/CreateCommentDTO';
 import { CommonModule, NgClass } from '@angular/common';
 import { ListCommentComponent } from '../list-comment/list-comment.component';
 import { PopupService } from '../../services/ExtServices/popup.service';
+import { DeleteEventDTO } from '../../dto/DeleteEventDTO';
+import { ModalService } from '../../services/ExtServices/modal.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-business-datail',
   standalone: true,
-  imports: [CarouselComponent, FormsModule, NgClass, ListCommentComponent, CommonModule],
+  imports: [CarouselComponent, FormsModule, NgClass, ListCommentComponent, CommonModule, MatTooltipModule],
   templateUrl: './business-datail.component.html',
   styleUrl: './business-datail.component.css'
 })
@@ -31,7 +34,7 @@ export class BusinessDatailComponent implements OnInit{
   commentList:any[]=[];
   eventList:any[]=[];
   errorComentList:string='';
-  constructor(private map:MapService, private token:TokenServicesService, private route:ActivatedRoute, private clients:ClientService, private popup:PopupService){
+  constructor(private map:MapService, private token:TokenServicesService, private route:ActivatedRoute, private clients:ClientService, private popup:PopupService, private modal:ModalService){
     this.route.params.subscribe(params=>{
       this.idBusiness = params['idBusiness'];
     });
@@ -90,6 +93,23 @@ export class BusinessDatailComponent implements OnInit{
         }
       });
     }
+  }
+  CreateEvent(){
+    this.modal.createEvent(this.businessDetail.id, this.businessDetail.idClient);
+  }
+  DeleteEvent(idEvent:string, idBusiness:string, idClient:string){
+    this.clients.deleteEvent(new DeleteEventDTO(idEvent,idBusiness,idClient)).subscribe({
+      next:(data)=>{
+        this.popup.openSnackBar(data.respuesta);
+        window.location.reload();
+      },
+      error:(error)=>{
+        this.popup.openSnackBar(error.error.respuesta);
+      }
+    });
+  }
+  updateEvent(idEvent:string, idBusiness:string, idClient:string, view:boolean){
+    this.modal.updateEvent(idBusiness,idClient,idEvent,view);
   }
 
 }

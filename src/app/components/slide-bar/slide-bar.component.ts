@@ -3,13 +3,8 @@ import { RouterModule } from '@angular/router';
 import { Business } from '../../model/Business';
 import { ClientService } from '../../services/user/client.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
-
 import { CommonModule } from '@angular/common';
-
 import { ModalService } from '../../services/ExtServices/modal.service';
-
-
-
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 @Component({

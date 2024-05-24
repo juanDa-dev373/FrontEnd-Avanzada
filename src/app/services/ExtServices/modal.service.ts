@@ -37,13 +37,17 @@ export class ModalService {
     })
   }
 
-  // createEvent(){
-  //   this.modal.open(CreateEventComponent, {
-  //     data: {
-  //       name: 'Choose List',
-  //       animal: 'Choose List'
-  //     },
-  //   })
-  // }
+  createEvent(idBusiness:string, idClient:string){
+    this.modal.open(CreateEventComponent, {
+      disableClose:true,
+      data:{business:idBusiness, client:idClient}
+    })
+  }
+  updateEvent(idBusiness:string, idClient:string, idEvent:string, view:boolean){
+    this.modal.open(CreateEventComponent,{
+      disableClose:true,
+      data:{business:idBusiness, client:idClient, id:idEvent, view:view}
+    });
+  }
 
 }

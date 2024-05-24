@@ -91,20 +91,18 @@
     overflow-x: hidden; /* Opcional: oculta la barra de desplazamiento horizontal si no es necesaria */
     padding: 10px; /* Opcional: añade un poco de espacio interior */
 }
-
-/* Opcional: Estilos adicionales para la barra de desplazamiento */
-.scroll-container::-webkit-scrollbar {
-    width: 12px;
+.contenedor-events{
+    display: flex; width:100%; 
+    justify-content: space-between; 
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 5px;
+    margin-bottom: 10px;
 }
-
-.scroll-container::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-    background: #888; 
-}
-
-.scroll-container::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+.scroll{
+    height: 150px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
 }
