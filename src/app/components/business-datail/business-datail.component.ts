@@ -9,6 +9,8 @@ import { CreateCommentDTO } from '../../dto/CreateCommentDTO';
 import { CommonModule, NgClass } from '@angular/common';
 import { ListCommentComponent } from '../list-comment/list-comment.component';
 import { PopupService } from '../../services/ExtServices/popup.service';
+import { ModalService } from '../../services/ExtServices/modal.service';
+import { BusinessToListDTO } from '../../dto/BusinessToListDTO';
 
 @Component({
   selector: 'app-business-datail',
@@ -18,6 +20,7 @@ import { PopupService } from '../../services/ExtServices/popup.service';
   styleUrl: './business-datail.component.css'
 })
 export class BusinessDatailComponent implements OnInit{
+
   photo:string=this.token.getPhoto();
   cod:string = this.token.getCodigo();
   prueba:string='width:'; 
@@ -31,7 +34,8 @@ export class BusinessDatailComponent implements OnInit{
   commentList:any[]=[];
   eventList:any[]=[];
   errorComentList:string='';
-  constructor(private map:MapService, private token:TokenServicesService, private route:ActivatedRoute, private clients:ClientService, private popup:PopupService){
+  constructor(private map:MapService, private token:TokenServicesService, 
+    private route:ActivatedRoute, private clients:ClientService, private popup:PopupService, private modal: ModalService){
     this.route.params.subscribe(params=>{
       this.idBusiness = params['idBusiness'];
     });
@@ -72,6 +76,23 @@ export class BusinessDatailComponent implements OnInit{
       }
     });
   }
+
+  chooseList() {
+      this.modal.openChooseList(this.idBusiness);
+  }
+
+  addFavorites() {
+      const addBusiness = new BusinessToListDTO (this.businessDetail.idClient,"01",this.idBusiness);
+      this.clients.addBusinessToList(addBusiness).subscribe({
+        next: (data: any) => {
+
+        },
+        error: (err: any) => {
+           alert(err.error.respuesta);
+        }
+      });
+  }
+    
   addComment(){
     const comment:CreateCommentDTO= new CreateCommentDTO('', this.token.getCodigo(), this.businessDetail.id,this.commentMessage);
     if(this.commentMessage==''){

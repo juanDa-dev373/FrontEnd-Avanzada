@@ -12,6 +12,7 @@ import { ModalService } from '../../services/ExtServices/modal.service';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
+import { BusinessToListDTO } from '../../dto/BusinessToListDTO';
 @Component({
   selector: 'app-slide-bar',
   standalone: true,
@@ -44,15 +45,18 @@ export class SlideBarComponent implements OnInit {
     }
     return false;
   }
+
+  viewMessageFavorites(): boolean {
+    return this.listsbusinesses && this.listsbusinesses[0] && this.listsbusinesses[0].idBusiness.length > 0;
+  }
+
   openCreateList() {
     const ref = this.modal.openCreateList(this.listsbusinesses);
     ref.afterClosed().subscribe(() => {
       this.getListsBusinesses();
     });
   }
-  openChooseList() {
-    this.modal.openChooseList();
-  }
+  
   getListsBusinesses(){
     this.clientService.getListsBusinesses().subscribe({
       next: (data) => {
@@ -67,6 +71,24 @@ export class SlideBarComponent implements OnInit {
       }
     });
   }
+
+  deleteBusinessToList(list: string, idBusiness:string) {
+    const removeBusiness = new BusinessToListDTO (this.local.getCodigo(),list,idBusiness);
+    this.clientService.deleteBusinessToList(removeBusiness).subscribe({
+      next: (data: any) => {
+        this.getListsBusinesses();
+      },
+      error: (err: any) => {
+        let mensaje="";
+        for (let e of err.error.respuesta) {
+          mensaje+="Campo: "+ e.campo+"  Error: " +e.error+"\n";
+
+        }
+         alert(mensaje);
+      }
+    });
+  }
+
   // openCreateEvent(){
   //   this.modal.createEvent();
   // }

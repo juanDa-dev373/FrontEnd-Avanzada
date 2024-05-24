@@ -31,9 +31,10 @@ export class ModalService {
     return ref;
   }
 
-  openChooseList(){
+  openChooseList(idBusiness:string){
     this.modal.open(ChooseListComponent, {
-      disableClose: true
+      disableClose: true,
+      data:{business:idBusiness}
     })
   }
 
