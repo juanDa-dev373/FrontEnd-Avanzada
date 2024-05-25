@@ -13,6 +13,7 @@ import { CreateBusinessComponent } from './components/create-business/create-bus
 import { BusinessDatailComponent } from './components/business-datail/business-datail.component';
 import { RecommendationComponent } from './components/recommendation/recommendation.component';
 import { IndexComponent } from './components/index/index.component';
+import { UpdateBusinessComponent } from './components/update-business/update-business.component';
 
 export const routes: Routes = [
     {
@@ -27,8 +28,7 @@ export const routes: Routes = [
         path:'home', component:HomeComponent, children:[
             {
                 path:'setting-account', component:AccountSettingComponent 
-            },
-            {
+            },{
                 path:'map', component:MapComponent
             },{
                 path:'list-business' , component:ListBusinessComponent ,
@@ -38,7 +38,10 @@ export const routes: Routes = [
                 path:'create-business', component:CreateBusinessComponent
             },{
                 path:'business-details/:idBusiness', component:BusinessDatailComponent
+            },{
+                path:'update-business/:idBusiness', component:UpdateBusinessComponent
             }
+
         ]
     },
     {

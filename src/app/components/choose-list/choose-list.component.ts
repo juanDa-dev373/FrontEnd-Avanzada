@@ -17,11 +17,11 @@ declare var $: any;
 })
 export class ChooseListComponent {
   constructor(private routes: Router, private dialog: MatDialogRef<ChooseListComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any[], private clientService: ClientService, private local: TokenServicesService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private clientService: ClientService, private local: TokenServicesService) {
     this.getListsBusinesses()
   }
 
-  list = this.data;
+  list: any[]=[];
 
   close() {
     this.dialog.close();
@@ -32,22 +32,19 @@ export class ChooseListComponent {
   }
 
   addBusinessToList(list: any) {
-    const addBusiness = list;
+    console.log(this.data)
+    const addBusiness = new BusinessToListDTO (this.local.getCodigo(),list,this.data.business);
     this.clientService.addBusinessToList(addBusiness).subscribe({
       next: (data: any) => {
         this.close();
       },
       error: (err: any) => {
-        let mensaje="";
-        for (let e of err.error.respuesta) {
-          mensaje+="Campo: "+ e.campo+"  Error: " +e.error+"\n";
-
-        }
-         alert(mensaje);
+         alert(err.error.respuesta);
       }
     });
   }
   getListsBusinesses() {
+    
     this.clientService.getListsBusinesses().subscribe({
       next: (data) => {
         if (data && data.respuesta && Array.isArray(data.respuesta)) {

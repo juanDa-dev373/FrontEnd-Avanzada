@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ModalService } from '../../services/ExtServices/modal.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
+import { BusinessToListDTO } from '../../dto/BusinessToListDTO';
 @Component({
   selector: 'app-slide-bar',
   standalone: true,
@@ -39,15 +40,18 @@ export class SlideBarComponent implements OnInit {
     }
     return false;
   }
+
+  viewMessageFavorites(): boolean {
+    return this.listsbusinesses && this.listsbusinesses[0] && this.listsbusinesses[0].idBusiness.length > 0;
+  }
+
   openCreateList() {
     const ref = this.modal.openCreateList(this.listsbusinesses);
     ref.afterClosed().subscribe(() => {
       this.getListsBusinesses();
     });
   }
-  openChooseList() {
-    this.modal.openChooseList();
-  }
+  
   getListsBusinesses(){
     this.clientService.getListsBusinesses().subscribe({
       next: (data) => {
@@ -61,9 +65,6 @@ export class SlideBarComponent implements OnInit {
         console.log(error1);
       }
     });
-  }
-  viewBusiness(idBusiness:string){
-    this.routes.navigate(['/home/business-details',idBusiness]);
   }
   // openCreateEvent(){
   //   this.modal.createEvent();

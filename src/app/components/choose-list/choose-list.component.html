@@ -4,7 +4,7 @@
     <div>List</div>
     <div class="list-container">
         <ul class="list-group">
-            <li class="list-group-item " *ngFor="let listName of list; let i = index;" (click)="addBusinessToList(listName)">
+            <li class="list-group-item " *ngFor="let listName of list.slice(1); let i = index;" (click)="addBusinessToList(listName.id)">
                 {{listName.listName}}
             </li>
         </ul>

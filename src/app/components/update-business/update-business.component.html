@@ -2,7 +2,7 @@
     <div>
         <div class="form-control control-contenedor">
             <div class="centrar">
-                <h1>Create Business</h1>
+                <h1>Update Business</h1>
             </div>
             <div class="centrar">
                 <div class="control-craousel">
@@ -79,8 +79,8 @@
                                         <option *ngFor="let day of days" [disabled]="daysSelecionado.includes(day)">{{ day }}</option>
                                     </select>
                                 </div>
-                                <div class="divs-contenedor"><input type="text" class="form-control" (change)="changeScheduleStart(i, start.value)" placeholder="start" #start></div>
-                                <div class="divs-contenedor"><input type="text" class="form-control" (change)="changeSheduleEnd(i, end.value)" placeholder="end" #end></div>
+                                <div class="divs-contenedor"><input type="text" class="form-control" [(ngModel)]="scheduleList[i].start" (change)="changeScheduleStart(i, start.value)" placeholder="start" #start></div>
+                                <div class="divs-contenedor"><input type="text" class="form-control" [(ngModel)]="scheduleList[i].end" (change)="changeSheduleEnd(i, end.value)" placeholder="end" #end></div>
                                 <div class="">
                                     <button class="btn btn-outline-secondary" matTooltip="delete shedule" matTooltipPosition="after" (click)="deleteShedule(i)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
@@ -123,8 +123,8 @@
                 </div>
                 <div class="centrar">
                     <div class="contenedor-elementos tamanio">
-                        <button class="btn btn-light btn-outline-dark btn-lg" (click)="addBusiness()">Create</button>
-                        <button class="btn btn-light btn-outline-dark btn-lg" routerLink="/home/list-business">Cancel</button>
+                        <button class="btn btn-light btn-outline-dark btn-lg" (click)="addBusiness()">Update</button>
+                        <button class="btn btn-light btn-outline-dark btn-lg" routerLink="/home/recommendation">Cancel</button>
                     </div>
                 </div>
             </div>

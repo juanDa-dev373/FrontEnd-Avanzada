@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { MapService } from '../../services/ExtServices/map.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '../../services/user/client.service';
 import { FormsModule } from '@angular/forms';
 import { CreateCommentDTO } from '../../dto/CreateCommentDTO';
@@ -12,6 +12,8 @@ import { PopupService } from '../../services/ExtServices/popup.service';
 import { DeleteEventDTO } from '../../dto/DeleteEventDTO';
 import { ModalService } from '../../services/ExtServices/modal.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BusinessToListDTO } from '../../dto/BusinessToListDTO';
+import { DataService } from '../../services/ExtServices/data.service';
 
 @Component({
   selector: 'app-business-datail',
@@ -21,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './business-datail.component.css'
 })
 export class BusinessDatailComponent implements OnInit{
+
   photo:string=this.token.getPhoto();
   cod:string = this.token.getCodigo();
   prueba:string='width:'; 
@@ -34,7 +37,7 @@ export class BusinessDatailComponent implements OnInit{
   commentList:any[]=[];
   eventList:any[]=[];
   errorComentList:string='';
-  constructor(private map:MapService, private token:TokenServicesService, private route:ActivatedRoute, private clients:ClientService, private popup:PopupService, private modal:ModalService){
+  constructor(private map:MapService, private token:TokenServicesService, private route:ActivatedRoute, private clients:ClientService, private popup:PopupService, private modal:ModalService,private routes: Router, private data:DataService){
     this.route.params.subscribe(params=>{
       this.idBusiness = params['idBusiness'];
     });
@@ -75,6 +78,28 @@ export class BusinessDatailComponent implements OnInit{
       }
     });
   }
+
+  updateBusiness() {
+    this.data.SetBusinessOwner(this.businessDetail)
+    this.routes.navigate(['/home/update-business', this.idBusiness]);
+  }
+
+  chooseList() {
+      this.modal.openChooseList(this.idBusiness);
+  }
+
+  addFavorites() {
+      const addBusiness = new BusinessToListDTO (this.businessDetail.idClient,"01",this.idBusiness);
+      this.clients.addBusinessToList(addBusiness).subscribe({
+        next: (data: any) => {
+
+        },
+        error: (err: any) => {
+           alert(err.error.respuesta);
+        }
+      });
+  }
+    
   addComment(){
     const comment:CreateCommentDTO= new CreateCommentDTO('', this.token.getCodigo(), this.businessDetail.id,this.commentMessage);
     if(this.commentMessage==''){
