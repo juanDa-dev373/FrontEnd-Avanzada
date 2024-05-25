@@ -39,7 +39,7 @@ export class CreateListComponent {
   }
 
   deleteBusinessList(index:number) {
-      this.clientService.deleteBusinessList(this.list[index].listName).subscribe({
+      this.clientService.deleteBusinessList(this.list[index+1].listName).subscribe({
         next: (data: any) => {
           this.list.splice(index, 1)
         },
