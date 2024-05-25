@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterModule } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { MapService } from '../../services/ExtServices/map.service';
 import { ImageService } from '../../services/user/image.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
@@ -12,15 +12,18 @@ import { PopupService } from '../../services/ExtServices/popup.service';
 import { Schedule } from '../../model/Schedule';
 import { Location } from '../../model/Location';
 import { AddBusinessDTO } from '../../dto/AddBusinessDTO';
+import { DataService } from '../../services/ExtServices/data.service';
+import { UpdateBusinessDTO } from '../../dto/UpdateBusinessDTO';
 
 @Component({
   selector: 'app-update-business',
   standalone: true,
-  imports: [CarouselComponent, FormsModule, CommonModule, MatTooltipModule, RouterModule],
+  imports: [CarouselComponent, FormsModule, CommonModule, MatTooltipModule,RouterModule],
   templateUrl: './update-business.component.html',
   styleUrl: './update-business.component.css'
 })
 export class UpdateBusinessComponent {
+
   nameAlert: boolean = false;
   descriptionAlert: boolean = false;
   ubicationAlert: boolean = false;
@@ -28,22 +31,26 @@ export class UpdateBusinessComponent {
   typeBusinessAlert: boolean = false;
   scheduleListAlert: boolean = false;
   numArrayAlert: boolean = false;
-  constructor(private map: MapService, private imageS: ImageService, private token: TokenServicesService, private client: ClientService, private popup: PopupService) {
+  idBusiness: any;
+  constructor(private map: MapService, private imageS: ImageService, private token: TokenServicesService, private client: ClientService, private popup: PopupService,private data:DataService,private routes: ActivatedRoute) {
+    this.routes.params.subscribe(params=>{
+      this.idBusiness = params['idBusiness'];
+    });
   }
   viewAlert: boolean[] = [];
-  numArray: string[] = [''];
+  numArray: string[] = this.data.getBusinessOwner().phone;
   message: string = '';
   disableScheduleAdd: boolean = false;
   days: string[] = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
-  daysSelecionado: string[] = ['MONDAY'];
-  scheduleList: Schedule[] = [{ start: '', day: this.days[0], end: '' }];
-  ubication: Location = { latitude: 0, longitude: 0 };
+  daysSelecionado: string[] = this.data.getBusinessOwner().timeSchedules.map((schedule: { day: any; }) => schedule.day);
+  scheduleList: Schedule[] = this.data.getBusinessOwner().timeSchedules;
+  ubication: Location = this.data.getBusinessOwner().location;
   cloudinary?: any;
   isLoading = false;
-  images: string[] = [];
-  name: string = '';
-  description: string = '';
-  typeBusiness: string = '';
+  images: string[] = this.data.getBusinessOwner().images;
+  name: string = this.data.getBusinessOwner().name;
+  description: string = this.data.getBusinessOwner().description;
+  typeBusiness: string = this.data.getBusinessOwner().typeBusiness;
   ngOnInit(): void {
     this.map.crearMapa();
     this.map.agregarMarcador().subscribe((marcador) => {
@@ -81,6 +88,7 @@ export class UpdateBusinessComponent {
     this.scheduleList[i].start = start;
   }
   changeScheduleDay(i: number, day: string) {
+    console.log(this.data.getBusinessOwner())
       this.scheduleList[i].day = day; 
       this.daysSelecionado[i]=day;
   }
@@ -143,7 +151,7 @@ export class UpdateBusinessComponent {
     });
   }
   addBusiness() {
-    var add = new AddBusinessDTO(this.name, this.description, this.token.getCodigo(), this.ubication, this.images, this.typeBusiness, this.scheduleList, this.numArray);
+    var add = new UpdateBusinessDTO(this.idBusiness,this.token.getCodigo(),this.name, this.description,this.ubication, this.images, this.typeBusiness, this.scheduleList, this.numArray,null);
     if (add.name == '') {
       this.nameAlert = true;
     } else {
@@ -169,6 +177,7 @@ export class UpdateBusinessComponent {
     } else {
       this.typeBusinessAlert = false;
     }
+    
     if (add.timeSchedules.length === 0) {
       this.scheduleListAlert = true;
     } else {
@@ -182,8 +191,8 @@ export class UpdateBusinessComponent {
     console.log('nombre: ' + this.name + ' descripcion: ' + this.description + ' ubicacion: ' + this.ubication + ' images: ' + this.images.length + ' tipo negocio: ' + this.typeBusiness + ' horario: ' + this.scheduleList.length);
     if (this.name !== '' && this.description !== '' && this.ubication.latitude != 0 && this.ubication.longitude != 0 && this.images.length > 0 && this.typeBusiness !== '' && this.scheduleList.length > 0) {
       console.log('entro');
-      console.log(add.idClient);
-      this.client.addBusiness(add).subscribe({
+      console.log(add.idCliente);
+      this.client.updateBusiness(add).subscribe({
         next: (data) => {
           this.popup.openSnackBar(data.respuesta);
         },

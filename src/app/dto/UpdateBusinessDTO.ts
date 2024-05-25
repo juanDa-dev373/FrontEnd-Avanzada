@@ -11,9 +11,9 @@ export class UpdateBusinessDTO {
         public description: string,
         public location: Location,
         public images: string[],
-        public typeBusiness: TypeBusiness,
-        public timeSchedules: Schedule[] | null,
-        public phone: string[] | null,
+        public typeBusiness: string,
+        public timeSchedules: Schedule[] ,
+        public phone: string[],
         public review: HistoryReview | null
     ) {}
 }
