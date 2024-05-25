@@ -27,11 +27,11 @@ export class ModeratorService {
     }
 
     public getListHistoryReviews(moderatorId: string):Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/moderator/getListHistoryReviews`, { params: { moderatorId } });
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/moderadores/getListHistoryReviews`, { params: { moderatorId } });
     }
 
     public getAllBusinessPending():Observable<MensajeDTO> {
-        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/moderator/getAllBusinessPending`);
+        return this.http.get<MensajeDTO>(`${this.apiUrl}/api/moderadores/getAllBusinessPending`);
     }
 
     public logOutUser():Observable<MensajeDTO> {

@@ -30,7 +30,7 @@
           <ng-container *ngIf="viewMessage()">
             <li class="lista-forma">no hay negocios para mostrar</li>
           </ng-container>
-          <li class="lista-forma" *ngFor="let index of business; let i =index" >
+          <li class="lista-forma" *ngFor="let index of business; let i =index" (click)="viewBusiness(index.id)" >
             {{index.name}}
           </li>
         </ul>

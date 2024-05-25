@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Business } from '../../model/Business';
 import { ClientService } from '../../services/user/client.service';
 import { TokenServicesService } from '../../services/ExtServices/token-services.service';
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 export class SlideBarComponent implements OnInit {
   business: Business[] = [];
   listsbusinesses: any[] = []
-  constructor(private clientService: ClientService, private local: TokenServicesService, private modal: ModalService) { }
+  constructor(private clientService: ClientService, private local: TokenServicesService, private modal: ModalService, private routes:Router) { }
   ngOnInit(): void {
     this.clientService.listBusinessOwner().subscribe({
       next: (data) => {
@@ -61,6 +61,9 @@ export class SlideBarComponent implements OnInit {
         console.log(error1);
       }
     });
+  }
+  viewBusiness(idBusiness:string){
+    this.routes.navigate(['/home/business-details',idBusiness]);
   }
   // openCreateEvent(){
   //   this.modal.createEvent();

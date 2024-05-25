@@ -5,7 +5,7 @@ import { MensajeDTO } from '../../dto/mensajeDTO';
 import { Observable } from 'rxjs';
 import { loginDTO } from '../../dto/loginDTO';
 import { signUpDTO } from '../../dto/signUpDTO';
-import { ChangePasswordDTO } from '../../dto/ChangePasswordDTO';
+import { ChangePasswordDTO } from '../../dto/changePasswordDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class AuthService {
   public loginClient():Observable<MensajeDTO>{
       return this.http.post<MensajeDTO>('', '');
   }
-  public loginModerator():Observable<MensajeDTO>{
-      return this.http.post<MensajeDTO>('','');
+  public loginModerator(login:loginDTO):Observable<MensajeDTO>{
+      return this.http.post<MensajeDTO>(enviroments.urlApi+'/api/auth/login-moderator',login);
   }
 
   public signUpClient(sign:signUpDTO):Observable<MensajeDTO>{

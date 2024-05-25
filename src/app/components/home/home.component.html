@@ -5,7 +5,11 @@
 <div class="container-fluid ">
     <div class="d-grid gap-3" style="grid-template-columns: 1fr 3.5fr;">
         <div class="bg-light border rounded-3">
-            <app-slide-bar></app-slide-bar>
+            @if(rol=='CLIENTE'){
+                <app-slide-bar></app-slide-bar>
+            }@else {
+                <app-slider-bar-moderator></app-slider-bar-moderator>
+            }
         </div>
         <div class="bg-light border rounded-3">
             <router-outlet></router-outlet>

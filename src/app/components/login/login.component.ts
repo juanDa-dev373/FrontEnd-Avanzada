@@ -47,16 +47,24 @@ export class LoginComponent {
         },
         error: (err: any) => {
           let mensaje = "";
-          if (Array.isArray(err.error.respuesta)) {
-            for (let e of err.error.respuesta) {
-              mensaje += "Campo: " + e.campo + "  Error: " + e.error + "\n";
-
+          this.loginService.loginModerator(this.Login).subscribe({
+            next:(data)=>{
+              this.local.setToken(data.respuesta.token);
+              this.routes.navigate(['/home']);
+            },
+            error:(error)=>{
+              if (Array.isArray(err.error.respuesta)) {
+                for (let e of err.error.respuesta) {
+                  mensaje += "Campo: " + e.campo + "  Error: " + e.error + "\n";
+    
+                }
+              }else{
+                mensaje = err.error.respuesta;
+              }
+              
+            alert(mensaje);
             }
-          }else{
-            mensaje = err.error.respuesta;
-          }
-          
-          alert(mensaje);
+          });
         }
 
       });
