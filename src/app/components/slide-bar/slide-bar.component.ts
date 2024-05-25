@@ -66,6 +66,25 @@ export class SlideBarComponent implements OnInit {
       }
     });
   }
+
+  
+  deleteBusinessToList(list: string, idBusiness:string) {
+    const removeBusiness = new BusinessToListDTO (this.local.getCodigo(),list,idBusiness);
+    this.clientService.deleteBusinessToList(removeBusiness).subscribe({
+      next: (data: any) => {
+        this.getListsBusinesses();
+      },
+      error: (err: any) => {
+        let mensaje="";
+        for (let e of err.error.respuesta) {
+          mensaje+="Campo: "+ e.campo+"  Error: " +e.error+"\n";
+
+        }
+         alert(mensaje);
+      }
+    });
+  }
+
   // openCreateEvent(){
   //   this.modal.createEvent();
   // }
