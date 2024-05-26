@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import mapboxgl from 'mapbox-gl';
+import  mapboxgl from 'mapbox-gl';
 import { Observable } from 'rxjs';
 import { enviroments } from '../../../enviroments/enviroments';
 import { Business } from '../../model/Business';
